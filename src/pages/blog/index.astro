@@ -1,20 +1,22 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/ui/PageHero.astro';
 import Section from '@/components/ui/Section.astro';
 
-const posts = (await getCollection('blog')).sort(
-    (a, b) =>
+type BlogEntry = CollectionEntry<'blog'>;
+const posts: BlogEntry[] = (await getCollection('blog')).sort(
+    (a: BlogEntry, b: BlogEntry) =>
         new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
 );
 
-const formatDate = (dateString: string) =>
-    new Intl.DateTimeFormat('en-AU', {
+function formatDate(dateString: string): string {
+    return new Intl.DateTimeFormat('en-AU', {
         day: 'numeric',
         month: 'long',
         year: 'numeric',
     }).format(new Date(dateString));
+}
 ---
 
 <BaseLayout
@@ -29,7 +31,7 @@ const formatDate = (dateString: string) =>
     <Section>
         <div class="grid gap-6 md:grid-cols-2">
             {
-                posts.map(post => (
+                posts.map((post) => (
                     <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                         {post.data.coverImage && (
                             <img

@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/ui/PageHero.astro';
 import Section from '@/components/ui/Section.astro';
@@ -11,15 +11,15 @@ import ContactForm from '@/components/blocks/ContactForm.astro';
 import TeamGrid from '@/components/blocks/TeamGrid.astro';
 import { siteInfo } from '@/data/site';
 
-export async function getStaticPaths() {
+export async function getStaticPaths(): Promise<{ params: { slug: string } }[]> {
   const pages = await getCollection('pages');
   return pages
-    .filter((page) => page.slug !== 'home')
-    .map((page) => ({ params: { slug: page.slug } }));
+    .filter((page: CollectionEntry<'pages'>) => page.slug !== 'home')
+    .map((page: CollectionEntry<'pages'>) => ({ params: { slug: page.slug } }));
 }
 
 const pages = await getCollection('pages');
-const page = pages.find((entry) => entry.slug === Astro.params.slug);
+const page = pages.find((entry: CollectionEntry<'pages'>) => entry.slug === Astro.params.slug);
 if (!page) {
   throw new Error('Page not found');
 }

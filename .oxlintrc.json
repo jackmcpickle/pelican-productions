@@ -57,6 +57,7 @@
     ".wrangler/",
     "drizzle/",
     "astro.config.mjs",
-    "drizzle.config.ts"
+    "drizzle.config.ts",
+    "src/content/config.ts"
   ]
 }

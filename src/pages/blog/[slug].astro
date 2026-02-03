@@ -1,16 +1,16 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/ui/PageHero.astro';
 import Section from '@/components/ui/Section.astro';
 
-export async function getStaticPaths() {
+export async function getStaticPaths(): Promise<{ params: { slug: string } }[]> {
   const posts = await getCollection('blog');
-  return posts.map((post) => ({ params: { slug: post.slug } }));
+  return posts.map((post: CollectionEntry<'blog'>) => ({ params: { slug: post.slug } }));
 }
 
 const posts = await getCollection('blog');
-const post = posts.find((entry) => entry.slug === Astro.params.slug);
+const post = posts.find((entry: CollectionEntry<'blog'>) => entry.slug === Astro.params.slug);
 if (!post) {
   throw new Error('Post not found');
 }

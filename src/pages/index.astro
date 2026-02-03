@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import HomeHero from '@/components/home/HomeHero.astro';
 import HomeHighlights from '@/components/home/HomeHighlights.astro';
@@ -9,7 +9,7 @@ import TestimonialsGrid from '@/components/blocks/TestimonialsGrid.astro';
 import HomeCTA from '@/components/home/HomeCTA.astro';
 
 const pages = await getCollection('pages');
-const home = pages.find((entry) => entry.slug === 'home');
+const home = pages.find((entry: CollectionEntry<'pages'>) => entry.slug === 'home');
 if (!home) {
   throw new Error('Home content not found');
 }

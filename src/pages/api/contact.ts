@@ -3,10 +3,14 @@ import { Resend } from 'resend';
 
 export const POST: APIRoute = async ({ request }) => {
   const formData = await request.formData();
-  const name = formData.get('name')?.toString() ?? '';
-  const email = formData.get('email')?.toString() ?? '';
-  const phone = formData.get('phone')?.toString() ?? '';
-  const message = formData.get('message')?.toString() ?? '';
+  const nameVal = formData.get('name');
+  const emailVal = formData.get('email');
+  const phoneVal = formData.get('phone');
+  const messageVal = formData.get('message');
+  const name = typeof nameVal === 'string' ? nameVal : '';
+  const email = typeof emailVal === 'string' ? emailVal : '';
+  const phone = typeof phoneVal === 'string' ? phoneVal : '';
+  const message = typeof messageVal === 'string' ? messageVal : '';
 
   if (!name || !email || !message) {
     return new Response('Missing required fields', { status: 400 });
