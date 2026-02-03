@@ -2,36 +2,43 @@
 import Button from '@/components/ui/Button.astro';
 
 interface Props {
-  title: string;
-  description: string;
-  primary: {
-    label: string;
-    href: string;
-  };
-  secondary?: {
-    label: string;
-    href: string;
-  };
+    title: string;
+    description: string;
+    primary: {
+        label: string;
+        href: string;
+    };
+    secondary?: {
+        label: string;
+        href: string;
+    };
 }
 
 const { title, description, primary, secondary } = Astro.props;
 ---
 
 <section class="py-12">
-  <div class="mx-auto w-full max-w-6xl px-6">
-    <div class="rounded-3xl bg-slate-900 px-8 py-10 text-white md:flex md:items-center md:justify-between">
-      <div class="max-w-2xl">
-        <h2 class="text-2xl font-semibold">{title}</h2>
-        <p class="mt-2 text-sm text-slate-200">{description}</p>
-      </div>
-      <div class="mt-6 flex flex-wrap gap-3 md:mt-0">
-        <Button href={primary.href}>{primary.label}</Button>
-        {secondary && (
-          <Button href={secondary.href} variant="secondary">
-            {secondary.label}
-          </Button>
-        )}
-      </div>
+    <div class="mx-auto w-full max-w-6xl px-6">
+        <div
+            class="rounded-3xl bg-slate-900 px-8 py-10 text-white md:flex md:items-center md:justify-between"
+        >
+            <div class="max-w-2xl">
+                <h2 class="text-2xl font-semibold">{title}</h2>
+                <p class="mt-2 text-sm text-slate-200">{description}</p>
+            </div>
+            <div class="mt-6 flex flex-wrap gap-3 md:mt-0">
+                <Button href={primary.href}>{primary.label}</Button>
+                {
+                    secondary && (
+                        <Button
+                            href={secondary.href}
+                            variant="secondary"
+                        >
+                            {secondary.label}
+                        </Button>
+                    )
+                }
+            </div>
+        </div>
     </div>
-  </div>
 </section>

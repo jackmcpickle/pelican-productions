@@ -1,18 +1,21 @@
 ---
 interface Props {
-  href: string;
-  variant?: 'primary' | 'secondary';
+    href: string;
+    variant?: 'primary' | 'secondary';
 }
 
 const { href, variant = 'primary' } = Astro.props;
 const base =
-  'inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400';
+    'inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400';
 const styles =
-  variant === 'secondary'
-    ? 'border border-white/50 text-white hover:border-white hover:text-white'
-    : 'bg-orange-500 text-white hover:bg-orange-400';
+    variant === 'secondary'
+        ? 'border border-white/50 text-white hover:border-white hover:text-white'
+        : 'bg-orange-500 text-white hover:bg-orange-400';
 ---
 
-<a class={`${base} ${styles}`} href={href}>
-  <slot />
+<a
+    class={`${base} ${styles}`}
+    href={href}
+>
+    <slot />
 </a>

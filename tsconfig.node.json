@@ -5,7 +5,7 @@
         "lib": ["ES2022"],
         "moduleResolution": "nodenext",
         "module": "NodeNext",
-        "types": ["node"],
+        "types": ["node"]
     },
-    "include": ["astro.config.mjs", "drizzle.config.ts", "vitest.config.ts"],
+    "include": ["astro.config.mjs", "drizzle.config.ts", "vitest.config.ts"]
 }

@@ -2,25 +2,28 @@
 import GalleryGrid from '@/components/blocks/GalleryGrid.astro';
 
 interface GalleryItem {
-  src: string;
-  alt: string;
+    src: string;
+    alt: string;
 }
 
 interface Props {
-  items: GalleryItem[];
+    items: GalleryItem[];
 }
 
 const { items } = Astro.props;
 ---
 
 <section class="py-12">
-  <div class="mx-auto w-full max-w-6xl px-6">
-    <div class="mb-6 max-w-2xl">
-      <h2 class="text-2xl font-semibold text-slate-900">Moments from the Pelican community</h2>
-      <p class="mt-2 text-sm text-slate-600">
-        A glimpse at performances, workshops, and the vibrant community at Pelican Productions.
-      </p>
+    <div class="mx-auto w-full max-w-6xl px-6">
+        <div class="mb-6 max-w-2xl">
+            <h2 class="text-2xl font-semibold text-slate-900">
+                Moments from the Pelican community
+            </h2>
+            <p class="mt-2 text-sm text-slate-600">
+                A glimpse at performances, workshops, and the vibrant community
+                at Pelican Productions.
+            </p>
+        </div>
+        <GalleryGrid items={items} />
     </div>
-    <GalleryGrid items={items} />
-  </div>
 </section>

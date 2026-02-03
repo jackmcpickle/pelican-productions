@@ -1,20 +1,27 @@
 ---
 interface GalleryItem {
-  src: string;
-  alt: string;
+    src: string;
+    alt: string;
 }
 
 interface Props {
-  items: GalleryItem[];
+    items: GalleryItem[];
 }
 
 const { items } = Astro.props;
 ---
 
 <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-  {items.map((item) => (
-    <figure class="overflow-hidden rounded-2xl bg-white shadow-sm">
-      <img src={item.src} alt={item.alt} class="h-48 w-full object-cover" loading="lazy" />
-    </figure>
-  ))}
+    {
+        items.map(item => (
+            <figure class="overflow-hidden rounded-2xl bg-white shadow-sm">
+                <img
+                    src={item.src}
+                    alt={item.alt}
+                    class="h-48 w-full object-cover"
+                    loading="lazy"
+                />
+            </figure>
+        ))
+    }
 </div>

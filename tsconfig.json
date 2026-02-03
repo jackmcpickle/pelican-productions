@@ -3,10 +3,10 @@
     "extends": "astro/tsconfigs/strictest",
     "compilerOptions": {
         "paths": {
-            "@/*": ["./src/*"],
-        },
+            "@/*": ["./src/*"]
+        }
     },
     "include": ["src", ".astro"],
     "exclude": ["node_modules", "dist"],
-    "references": [{ "path": "./tsconfig.node.json" }],
+    "references": [{ "path": "./tsconfig.node.json" }]
 }
