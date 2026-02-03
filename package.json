@@ -9,6 +9,8 @@
         "preview": "wrangler dev",
         "deploy": "pnpm build && wrangler deploy",
         "astro": "astro",
+        "test": "pnpm run check && pnpm run fmt && pnpm run lint",
+        "fmt": "prettier --write .",
         "lint": "oxlint --type-aware --type-check --fix"
     },
     "dependencies": {
