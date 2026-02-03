@@ -1,0 +1,60 @@
+---
+interface Props {
+    variant?: 'primary' | 'secondary' | 'outline' | undefined;
+    size?: 'sm' | 'md' | 'lg' | undefined;
+    href?: string | undefined;
+    type?: 'button' | 'submit' | 'reset' | undefined;
+    target?: string | undefined;
+    class?: string | undefined;
+}
+
+const {
+    variant = 'primary',
+    size = 'md',
+    href,
+    type = 'button',
+    target,
+    class: className,
+} = Astro.props;
+
+const baseStyles =
+    'inline-flex items-center justify-center font-medium transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2';
+
+const variants = {
+    primary:
+        'bg-pelican-teal text-white hover:bg-pelican-teal-dark focus:ring-pelican-teal',
+    secondary:
+        'bg-pelican-gold text-pelican-navy hover:bg-pelican-gold/90 focus:ring-pelican-gold',
+    outline:
+        'border-2 border-pelican-teal text-pelican-teal hover:bg-pelican-teal hover:text-white focus:ring-pelican-teal',
+};
+
+const sizes = {
+    sm: 'px-3 py-1.5 text-sm',
+    md: 'px-5 py-2.5 text-base',
+    lg: 'px-7 py-3 text-lg',
+};
+
+const classes = [baseStyles, variants[variant], sizes[size], className].join(
+    ' ',
+);
+---
+
+{
+    href ? (
+        <a
+            href={href}
+            class={classes}
+            target={target}
+        >
+            <slot />
+        </a>
+    ) : (
+        <button
+            type={type}
+            class={classes}
+        >
+            <slot />
+        </button>
+    )
+}

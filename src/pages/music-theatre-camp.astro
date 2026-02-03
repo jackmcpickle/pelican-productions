@@ -1,0 +1,100 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Button from '@/components/ui/Button.astro';
+---
+
+<BaseLayout
+    title="Music Theatre Camp"
+    description="Holiday workshops for young performers"
+>
+    <section class="py-20">
+        <div class="mx-auto max-w-7xl px-4">
+            <SectionHeading
+                title="Music Theatre Camp"
+                subtitle="The ultimate performing arts holiday experience"
+            />
+
+            <div class="grid items-center gap-12 lg:grid-cols-2">
+                <div class="prose prose-lg max-w-none">
+                    <p>
+                        Our Music Theatre Camp is the perfect way to spend the
+                        school holidays! Join us for an action-packed week of
+                        singing, dancing, and acting, culminating in a showcase
+                        performance for family and friends.
+                    </p>
+
+                    <h3>What to Expect</h3>
+                    <ul>
+                        <li>
+                            Learn songs, choreography, and scenes from popular
+                            musicals
+                        </li>
+                        <li>Work with professional instructors</li>
+                        <li>Make new friends who share your passion</li>
+                        <li>Build confidence and performance skills</li>
+                        <li>End-of-camp showcase performance</li>
+                    </ul>
+
+                    <h3>Camp Details</h3>
+                    <p>
+                        Our camps run during school holidays and cater to
+                        various age groups and experience levels. Each camp has
+                        a different theme or musical focus.
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+                    <div
+                        class="bg-pelican-gold/20 flex aspect-video items-center justify-center rounded-xl"
+                    >
+                        <span class="text-6xl">🎪</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 grid gap-8 md:grid-cols-3">
+                <div class="rounded-xl bg-gray-50 p-6 text-center">
+                    <div class="text-4xl">👶</div>
+                    <h4 class="mt-4 text-lg font-bold">Junior Camp</h4>
+                    <p class="mt-2 text-gray-600">Ages 5-8</p>
+                    <p class="mt-1 text-sm text-gray-500">
+                        Perfect for beginners
+                    </p>
+                </div>
+                <div class="rounded-xl bg-gray-50 p-6 text-center">
+                    <div class="text-4xl">🎭</div>
+                    <h4 class="mt-4 text-lg font-bold">Intermediate Camp</h4>
+                    <p class="mt-2 text-gray-600">Ages 9-12</p>
+                    <p class="mt-1 text-sm text-gray-500">
+                        Building on the basics
+                    </p>
+                </div>
+                <div class="rounded-xl bg-gray-50 p-6 text-center">
+                    <div class="text-4xl">⭐</div>
+                    <h4 class="mt-4 text-lg font-bold">Senior Camp</h4>
+                    <p class="mt-2 text-gray-600">Ages 13-18</p>
+                    <p class="mt-1 text-sm text-gray-500">Advanced training</p>
+                </div>
+            </div>
+
+            <div
+                class="bg-pelican-teal mt-16 rounded-xl p-8 text-center text-white"
+            >
+                <h3 class="text-2xl font-bold">Ready to Join?</h3>
+                <p class="mt-4 text-lg text-white/90">
+                    Contact us to find out about upcoming camp dates and
+                    availability.
+                </p>
+                <div class="mt-6">
+                    <Button
+                        href="/contact"
+                        variant="secondary"
+                    >
+                        Enquire Now
+                    </Button>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

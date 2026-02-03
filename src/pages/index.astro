@@ -1,17 +1,129 @@
 ---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/home/Hero.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import ProgramCard from '@/components/content/ProgramCard.astro';
+import ShowCard from '@/components/content/ShowCard.astro';
+import TestimonialCard from '@/components/content/TestimonialCard.astro';
+import NewsletterForm from '@/components/forms/NewsletterForm.astro';
+import Button from '@/components/ui/Button.astro';
 
+const programs = (await getCollection('programs')).sort(
+    (a, b) => a.data.order - b.data.order,
+);
+const shows = (await getCollection('shows')).slice(0, 3);
+const testimonials = (await getCollection('testimonials'))
+    .sort((a, b) => a.data.order - b.data.order)
+    .slice(0, 3);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Home">
+    <Hero />
+
+    <!-- Programs Section -->
+    <section class="py-20">
+        <div class="mx-auto max-w-7xl px-4">
+            <SectionHeading
+                title="Our Programs"
+                subtitle="Discover the perfect program for every aspiring performer"
+            />
+            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {
+                    programs.slice(0, 3).map(program => (
+                        <ProgramCard
+                            title={program.data.title}
+                            description={program.data.description}
+                            ageRange={program.data.ageRange}
+                            schedule={program.data.schedule}
+                            image={program.data.image}
+                            slug={program.slug}
+                        />
+                    ))
+                }
+            </div>
+            <div class="mt-12 text-center">
+                <Button
+                    href="/programs"
+                    variant="outline"
+                >
+                    View All Programs
+                </Button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shows Section -->
+    <section class="bg-gray-50 py-20">
+        <div class="mx-auto max-w-7xl px-4">
+            <SectionHeading
+                title="Productions"
+                subtitle="Experience the magic of live theatre"
+            />
+            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {
+                    shows.map(show => (
+                        <ShowCard
+                            title={show.data.title}
+                            date={show.data.date}
+                            description={show.data.description}
+                            image={show.data.image}
+                            slug={show.slug}
+                            status={show.data.status}
+                        />
+                    ))
+                }
+            </div>
+            <div class="mt-12 text-center">
+                <Button
+                    href="/shows"
+                    variant="outline"
+                    >View All Shows</Button
+                >
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20">
+        <div class="mx-auto max-w-7xl px-4">
+            <SectionHeading
+                title="What People Say"
+                subtitle="Hear from our community of performers and families"
+            />
+            <div class="grid gap-8 md:grid-cols-3">
+                {
+                    testimonials.map(testimonial => (
+                        <TestimonialCard
+                            name={testimonial.data.name}
+                            quote={testimonial.data.quote}
+                            role={testimonial.data.role}
+                        />
+                    ))
+                }
+            </div>
+            <div class="mt-12 text-center">
+                <Button
+                    href="/testimonials"
+                    variant="outline"
+                >
+                    Read More Testimonials
+                </Button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="bg-pelican-teal py-20">
+        <div class="mx-auto max-w-2xl px-4 text-center">
+            <h2 class="text-3xl font-bold text-white">Stay in the Loop</h2>
+            <p class="mt-4 text-lg text-white/90">
+                Subscribe to our newsletter for updates on shows, programs, and
+                special events.
+            </p>
+            <div class="mt-8">
+                <NewsletterForm />
+            </div>
+        </div>
+    </section>
+</BaseLayout>

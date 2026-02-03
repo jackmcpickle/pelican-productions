@@ -1,0 +1,11 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+@plugin '@tailwindcss/forms';
+
+@theme {
+    --color-pelican-teal: #008080;
+    --color-pelican-teal-dark: #006666;
+    --color-pelican-gold: #d4af37;
+    --color-pelican-navy: #1a1a2e;
+    --font-family-sans: 'Inter', system-ui, sans-serif;
+}

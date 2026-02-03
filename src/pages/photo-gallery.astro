@@ -1,0 +1,30 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import GalleryGrid from '@/components/gallery/GalleryGrid.astro';
+
+const images = [
+    { src: '/images/gallery/singoz-28.jpg', alt: 'Performance photo 1' },
+    { src: '/images/gallery/singoz-30.jpg', alt: 'Performance photo 2' },
+    { src: '/images/gallery/placeholder-1.jpg', alt: 'Performance photo 3' },
+    { src: '/images/gallery/placeholder-2.jpg', alt: 'Performance photo 4' },
+    { src: '/images/gallery/placeholder-3.jpg', alt: 'Performance photo 5' },
+    { src: '/images/gallery/placeholder-4.jpg', alt: 'Performance photo 6' },
+];
+---
+
+<BaseLayout
+    title="Photo Gallery"
+    description="Photos from our productions and classes"
+>
+    <section class="py-20">
+        <div class="mx-auto max-w-7xl px-4">
+            <SectionHeading
+                title="Photo Gallery"
+                subtitle="Capturing moments of creativity and performance"
+            />
+
+            <GalleryGrid {images} />
+        </div>
+    </section>
+</BaseLayout>

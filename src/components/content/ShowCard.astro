@@ -1,0 +1,49 @@
+---
+import Card from '@/components/ui/Card.astro';
+import Button from '@/components/ui/Button.astro';
+
+interface Props {
+    title: string;
+    date: string;
+    description: string;
+    image?: string | undefined;
+    slug: string;
+    status?: 'upcoming' | 'past' | undefined;
+}
+
+const { title, date, description, image, slug, status = 'past' } = Astro.props;
+---
+
+<Card>
+    {
+        image && (
+            <div class="relative">
+                <img
+                    src={image}
+                    alt={title}
+                    class="h-56 w-full object-cover"
+                    loading="lazy"
+                />
+                {status === 'upcoming' && (
+                    <span class="bg-pelican-gold text-pelican-navy absolute top-2 right-2 rounded-full px-3 py-1 text-xs font-semibold">
+                        Upcoming
+                    </span>
+                )}
+            </div>
+        )
+    }
+    <div class="p-6">
+        <p class="text-pelican-teal text-sm font-medium">{date}</p>
+        <h3 class="mt-1 text-xl font-bold text-gray-900">{title}</h3>
+        <p class="mt-3 line-clamp-2 text-gray-600">{description}</p>
+        <div class="mt-4">
+            <Button
+                href={`/shows/${slug}`}
+                variant="primary"
+                size="sm"
+            >
+                View Details
+            </Button>
+        </div>
+    </div>
+</Card>

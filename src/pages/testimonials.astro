@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import TestimonialCard from '@/components/content/TestimonialCard.astro';
+
+const testimonials = (await getCollection('testimonials')).sort(
+    (a, b) => a.data.order - b.data.order,
+);
+---
+
+<BaseLayout
+    title="Testimonials"
+    description="What our community says about Pelican Productions"
+>
+    <section class="py-20">
+        <div class="mx-auto max-w-7xl px-4">
+            <SectionHeading
+                title="What People Say"
+                subtitle="Hear from our community of performers and families"
+            />
+
+            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {
+                    testimonials.map(testimonial => (
+                        <TestimonialCard
+                            name={testimonial.data.name}
+                            quote={testimonial.data.quote}
+                            role={testimonial.data.role}
+                        />
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+</BaseLayout>

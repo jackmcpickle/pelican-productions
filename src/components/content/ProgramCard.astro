@@ -1,0 +1,43 @@
+---
+import Card from '@/components/ui/Card.astro';
+import Button from '@/components/ui/Button.astro';
+
+interface Props {
+    title: string;
+    description: string;
+    ageRange?: string | undefined;
+    schedule?: string | undefined;
+    image?: string | undefined;
+    slug: string;
+}
+
+const { title, description, ageRange, schedule, image, slug } = Astro.props;
+---
+
+<Card>
+    {
+        image && (
+            <img
+                src={image}
+                alt={title}
+                class="h-48 w-full object-cover"
+                loading="lazy"
+            />
+        )
+    }
+    <div class="p-6">
+        <h3 class="text-xl font-bold text-gray-900">{title}</h3>
+        {ageRange && <p class="text-pelican-teal mt-1 text-sm">{ageRange}</p>}
+        <p class="mt-3 line-clamp-3 text-gray-600">{description}</p>
+        {schedule && <p class="mt-2 text-sm text-gray-500">{schedule}</p>}
+        <div class="mt-4">
+            <Button
+                href={`/programs#${slug}`}
+                variant="outline"
+                size="sm"
+            >
+                Learn More
+            </Button>
+        </div>
+    </div>
+</Card>

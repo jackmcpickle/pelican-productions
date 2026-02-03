@@ -1,0 +1,85 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/ui/Button.astro';
+
+export async function getStaticPaths() {
+    const shows = await getCollection('shows');
+    return shows.map(show => ({
+        params: { slug: show.slug },
+        props: { show },
+    }));
+}
+
+const { show } = Astro.props;
+const { Content } = await render(show);
+---
+
+<BaseLayout
+    title={show.data.title}
+    description={show.data.description}
+>
+    <article class="py-20">
+        <div class="mx-auto max-w-4xl px-4">
+            <div class="mb-8">
+                <Button
+                    href="/shows"
+                    variant="outline"
+                    size="sm"
+                >
+                    &larr; Back to Shows
+                </Button>
+            </div>
+
+            {
+                show.data.image && (
+                    <img
+                        src={show.data.image}
+                        alt={show.data.title}
+                        class="mb-8 w-full rounded-xl shadow-lg"
+                    />
+                )
+            }
+
+            <div class="mb-6">
+                {
+                    show.data.status === 'upcoming' && (
+                        <span class="bg-pelican-gold text-pelican-navy inline-block rounded-full px-3 py-1 text-sm font-semibold">
+                            Upcoming
+                        </span>
+                    )
+                }
+                <p class="text-pelican-teal mt-2 text-lg font-medium">
+                    {show.data.date}
+                </p>
+                {
+                    show.data.venue && (
+                        <p class="text-gray-500">{show.data.venue}</p>
+                    )
+                }
+            </div>
+
+            <h1 class="text-4xl font-bold text-gray-900 md:text-5xl">
+                {show.data.title}
+            </h1>
+
+            <div class="prose prose-lg mt-8 max-w-none">
+                <Content />
+            </div>
+
+            {
+                show.data.ticketLink && show.data.status === 'upcoming' && (
+                    <div class="mt-12">
+                        <Button
+                            href={show.data.ticketLink}
+                            size="lg"
+                            target="_blank"
+                        >
+                            Get Tickets
+                        </Button>
+                    </div>
+                )
+            }
+        </div>
+    </article>
+</BaseLayout>

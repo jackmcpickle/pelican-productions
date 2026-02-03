@@ -1,0 +1,62 @@
+---
+
+---
+
+<form
+    id="newsletter-form"
+    class="flex flex-col gap-3 sm:flex-row"
+    action="/api/newsletter"
+    method="POST"
+>
+    <input
+        type="email"
+        name="email"
+        required
+        placeholder="Enter your email"
+        class="focus:border-pelican-teal focus:ring-pelican-teal flex-1 rounded-lg border-gray-300 px-4 py-3"
+    />
+    <button
+        type="submit"
+        class="bg-pelican-gold text-pelican-navy hover:bg-pelican-gold/90 rounded-lg px-6 py-3 font-medium transition-colors"
+    >
+        Subscribe
+    </button>
+</form>
+<p
+    id="newsletter-message"
+    class="mt-2 hidden text-sm"
+>
+</p>
+
+<script>
+    const form = document.getElementById('newsletter-form') as HTMLFormElement;
+    const message = document.getElementById('newsletter-message');
+
+    form?.addEventListener('submit', async e => {
+        e.preventDefault();
+        const formData = new FormData(form);
+
+        try {
+            const res = await fetch('/api/newsletter', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (res.ok) {
+                if (message) {
+                    message.textContent = 'Thanks for subscribing!';
+                    message.className = 'mt-2 text-sm text-green-600';
+                }
+                form.reset();
+            } else {
+                throw new Error('Failed to subscribe');
+            }
+        } catch {
+            if (message) {
+                message.textContent = 'Something went wrong. Please try again.';
+                message.className = 'mt-2 text-sm text-red-600';
+            }
+        }
+        message?.classList.remove('hidden');
+    });
+</script>

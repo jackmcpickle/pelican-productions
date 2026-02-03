@@ -1,0 +1,96 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+---
+
+<BaseLayout
+    title="About Us"
+    description="Learn about Pelican Productions - South Australia's premier performing arts organisation"
+>
+    <section class="py-20">
+        <div class="mx-auto max-w-7xl px-4">
+            <SectionHeading
+                title="About Pelican Productions"
+                subtitle="Nurturing talent and inspiring creativity since 2003"
+            />
+
+            <div class="grid items-center gap-12 lg:grid-cols-2">
+                <div class="prose prose-lg max-w-none">
+                    <p>
+                        Pelican Productions is South Australia's premier
+                        performing arts organisation, dedicated to nurturing
+                        young talent and inspiring creativity through music
+                        theatre, dance, and drama.
+                    </p>
+                    <p>
+                        Founded in 2003, we've grown from a small community
+                        group to a thriving arts organisation that has helped
+                        hundreds of young performers discover their passion and
+                        develop their skills.
+                    </p>
+                    <p>
+                        Our programs cater to all ages and experience levels,
+                        from beginner classes for young children to advanced
+                        training for aspiring professionals. We believe that
+                        everyone has the potential to shine on stage.
+                    </p>
+
+                    <h3>Our Mission</h3>
+                    <p>
+                        To provide high-quality performing arts education and
+                        performance opportunities in a supportive, inclusive
+                        environment where students can develop confidence,
+                        creativity, and lifelong skills.
+                    </p>
+
+                    <h3>Our Values</h3>
+                    <ul>
+                        <li>
+                            <strong>Excellence</strong> - We strive for the highest
+                            standards in all we do
+                        </li>
+                        <li>
+                            <strong>Inclusivity</strong> - Everyone is welcome regardless
+                            of experience or ability
+                        </li>
+                        <li>
+                            <strong>Community</strong> - We build lasting friendships
+                            and support networks
+                        </li>
+                        <li>
+                            <strong>Growth</strong> - We encourage continuous learning
+                            and personal development
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="space-y-6">
+                    <img
+                        src="/images/about/about-us-photo.jpg"
+                        alt="Pelican Productions students"
+                        class="rounded-xl shadow-lg"
+                    />
+                    <img
+                        src="/images/about/pelican-group.jpg"
+                        alt="Pelican Productions group"
+                        class="rounded-xl shadow-lg"
+                    />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-gray-50 py-20">
+        <div class="mx-auto max-w-7xl px-4">
+            <SectionHeading title="Meet Our Team" />
+            <div class="prose prose-lg mx-auto max-w-3xl text-center">
+                <p>
+                    Our team of professional instructors brings decades of
+                    combined experience in performing arts education. Each
+                    teacher is passionate about helping students reach their
+                    potential while having fun along the way.
+                </p>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

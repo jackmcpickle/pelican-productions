@@ -1,6 +1,9 @@
+/// <reference path="../.astro/types.d.ts" />
 
-declare namespace NodeJS {
-    interface ProcessEnv {
-        readonly BUILDER_API_PUBLIC_KEY: string;
-    }
+interface ImportMetaEnv {
+    readonly RESEND_API_KEY?: string;
+}
+
+interface ImportMeta {
+    readonly env: ImportMetaEnv;
 }

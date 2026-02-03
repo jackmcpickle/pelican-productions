@@ -1,0 +1,132 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import ContactForm from '@/components/forms/ContactForm.astro';
+---
+
+<BaseLayout
+    title="Contact"
+    description="Get in touch with Pelican Productions"
+>
+    <section class="py-20">
+        <div class="mx-auto max-w-7xl px-4">
+            <SectionHeading
+                title="Contact Us"
+                subtitle="We'd love to hear from you"
+            />
+
+            <div class="grid gap-12 lg:grid-cols-2">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900">
+                        Get in Touch
+                    </h3>
+                    <p class="mt-4 text-gray-600">
+                        Have a question about our programs? Want to enrol? Just
+                        want to say hello? Fill out the form and we'll get back
+                        to you as soon as possible.
+                    </p>
+
+                    <div class="mt-8 space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="bg-pelican-teal/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+                            >
+                                <svg
+                                    class="text-pelican-teal h-5 w-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">
+                                    Email
+                                </h4>
+                                <a
+                                    href="mailto:info@pelicanproductions.net.au"
+                                    class="text-pelican-teal hover:underline"
+                                >
+                                    info@pelicanproductions.net.au
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="bg-pelican-teal/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+                            >
+                                <svg
+                                    class="text-pelican-teal h-5 w-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                    ></path>
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">
+                                    Location
+                                </h4>
+                                <p class="text-gray-600">
+                                    The Nest Studio<br />
+                                    Adelaide, South Australia
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="bg-pelican-teal/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+                            >
+                                <svg
+                                    class="text-pelican-teal h-5 w-5"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">
+                                    Social Media
+                                </h4>
+                                <p class="text-gray-600">
+                                    Follow us on Facebook and Instagram for
+                                    updates
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-xl bg-gray-50 p-8">
+                    <h3 class="mb-6 text-xl font-bold text-gray-900">
+                        Send us a Message
+                    </h3>
+                    <ContactForm />
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

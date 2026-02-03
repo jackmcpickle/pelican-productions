@@ -1,0 +1,71 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Button from '@/components/ui/Button.astro';
+---
+
+<BaseLayout
+    title="The Nest"
+    description="Our dedicated studio space in Adelaide"
+>
+    <section class="py-20">
+        <div class="mx-auto max-w-7xl px-4">
+            <SectionHeading
+                title="The Nest"
+                subtitle="Our home for creativity and performance"
+            />
+
+            <div class="grid items-center gap-12 lg:grid-cols-2">
+                <div class="prose prose-lg max-w-none">
+                    <p>
+                        The Nest is Pelican Productions' dedicated studio space,
+                        purpose-built for performing arts education and intimate
+                        performances.
+                    </p>
+
+                    <h3>Facilities</h3>
+                    <ul>
+                        <li>Sprung dance floor for safe movement practice</li>
+                        <li>Full-length mirrors for technique work</li>
+                        <li>Professional sound system</li>
+                        <li>Performance lighting</li>
+                        <li>Comfortable waiting area for parents</li>
+                        <li>Air conditioning and heating</li>
+                    </ul>
+
+                    <h3>Venue Hire</h3>
+                    <p>
+                        The Nest is available for hire for rehearsals,
+                        workshops, small performances, and events. Our space is
+                        perfect for dance classes, acting workshops, auditions,
+                        and more.
+                    </p>
+
+                    <p>
+                        Contact us to enquire about venue availability and
+                        rates.
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+                    <div
+                        class="bg-pelican-teal/10 flex aspect-video items-center justify-center rounded-xl"
+                    >
+                        <span class="text-6xl">🏠</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 rounded-xl bg-gray-50 p-8">
+                <h3 class="text-2xl font-bold text-gray-900">Location</h3>
+                <p class="mt-4 text-gray-600">
+                    The Nest is conveniently located in Adelaide, South
+                    Australia. Easy street parking is available nearby.
+                </p>
+                <div class="mt-6">
+                    <Button href="/contact">Get Directions</Button>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

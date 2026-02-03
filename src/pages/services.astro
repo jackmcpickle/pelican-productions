@@ -1,0 +1,159 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Button from '@/components/ui/Button.astro';
+import Card from '@/components/ui/Card.astro';
+---
+
+<BaseLayout
+    title="Services"
+    description="Professional services offered by Pelican Productions"
+>
+    <section class="py-20">
+        <div class="mx-auto max-w-7xl px-4">
+            <SectionHeading
+                title="Our Services"
+                subtitle="Beyond our regular programs, we offer a range of professional services"
+            />
+
+            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <Card>
+                    <div class="p-6">
+                        <div class="mb-4 text-4xl">🏠</div>
+                        <h3 class="text-xl font-bold text-gray-900">
+                            Venue Hire
+                        </h3>
+                        <p class="mt-3 text-gray-600">
+                            The Nest studio is available for hire for
+                            rehearsals, workshops, auditions, and small
+                            performances.
+                        </p>
+                        <div class="mt-4">
+                            <Button
+                                href="/the-nest"
+                                variant="outline"
+                                size="sm"
+                            >
+                                Learn More
+                            </Button>
+                        </div>
+                    </div>
+                </Card>
+
+                <Card>
+                    <div class="p-6">
+                        <div class="mb-4 text-4xl">🎉</div>
+                        <h3 class="text-xl font-bold text-gray-900">
+                            Birthday Parties
+                        </h3>
+                        <p class="mt-3 text-gray-600">
+                            Celebrate with a performing arts party! Our team can
+                            run singing, dancing, and drama activities for your
+                            special day.
+                        </p>
+                        <div class="mt-4">
+                            <Button
+                                href="/contact"
+                                variant="outline"
+                                size="sm"
+                            >
+                                Enquire
+                            </Button>
+                        </div>
+                    </div>
+                </Card>
+
+                <Card>
+                    <div class="p-6">
+                        <div class="mb-4 text-4xl">🏫</div>
+                        <h3 class="text-xl font-bold text-gray-900">
+                            School Workshops
+                        </h3>
+                        <p class="mt-3 text-gray-600">
+                            We offer performing arts workshops for schools,
+                            including incursions and after-school programs.
+                        </p>
+                        <div class="mt-4">
+                            <Button
+                                href="/contact"
+                                variant="outline"
+                                size="sm"
+                            >
+                                Enquire
+                            </Button>
+                        </div>
+                    </div>
+                </Card>
+
+                <Card>
+                    <div class="p-6">
+                        <div class="mb-4 text-4xl">🎤</div>
+                        <h3 class="text-xl font-bold text-gray-900">
+                            Private Coaching
+                        </h3>
+                        <p class="mt-3 text-gray-600">
+                            One-on-one coaching available for singing, acting,
+                            and audition preparation with our experienced
+                            instructors.
+                        </p>
+                        <div class="mt-4">
+                            <Button
+                                href="/contact"
+                                variant="outline"
+                                size="sm"
+                            >
+                                Enquire
+                            </Button>
+                        </div>
+                    </div>
+                </Card>
+
+                <Card>
+                    <div class="p-6">
+                        <div class="mb-4 text-4xl">🎬</div>
+                        <h3 class="text-xl font-bold text-gray-900">
+                            Corporate Entertainment
+                        </h3>
+                        <p class="mt-3 text-gray-600">
+                            Looking for entertainment for your corporate event?
+                            Our talented performers can provide customised
+                            entertainment.
+                        </p>
+                        <div class="mt-4">
+                            <Button
+                                href="/contact"
+                                variant="outline"
+                                size="sm"
+                            >
+                                Enquire
+                            </Button>
+                        </div>
+                    </div>
+                </Card>
+
+                <Card>
+                    <div class="p-6">
+                        <div class="mb-4 text-4xl">🎭</div>
+                        <h3 class="text-xl font-bold text-gray-900">
+                            Production Services
+                        </h3>
+                        <p class="mt-3 text-gray-600">
+                            Need help with your community theatre production? We
+                            offer choreography, direction, and production
+                            services.
+                        </p>
+                        <div class="mt-4">
+                            <Button
+                                href="/contact"
+                                variant="outline"
+                                size="sm"
+                            >
+                                Enquire
+                            </Button>
+                        </div>
+                    </div>
+                </Card>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

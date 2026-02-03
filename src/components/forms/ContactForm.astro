@@ -1,0 +1,118 @@
+---
+
+---
+
+<form
+    id="contact-form"
+    class="space-y-6"
+    action="/api/contact"
+    method="POST"
+>
+    <div class="grid gap-6 md:grid-cols-2">
+        <div>
+            <label
+                for="name"
+                class="block text-sm font-medium text-gray-700"
+            >
+                Name
+            </label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="focus:border-pelican-teal focus:ring-pelican-teal mt-1 block w-full rounded-lg border-gray-300 shadow-sm"
+            />
+        </div>
+        <div>
+            <label
+                for="email"
+                class="block text-sm font-medium text-gray-700"
+            >
+                Email
+            </label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="focus:border-pelican-teal focus:ring-pelican-teal mt-1 block w-full rounded-lg border-gray-300 shadow-sm"
+            />
+        </div>
+    </div>
+    <div>
+        <label
+            for="subject"
+            class="block text-sm font-medium text-gray-700"
+        >
+            Subject
+        </label>
+        <input
+            type="text"
+            id="subject"
+            name="subject"
+            required
+            class="focus:border-pelican-teal focus:ring-pelican-teal mt-1 block w-full rounded-lg border-gray-300 shadow-sm"
+        />
+    </div>
+    <div>
+        <label
+            for="message"
+            class="block text-sm font-medium text-gray-700"
+        >
+            Message
+        </label>
+        <textarea
+            id="message"
+            name="message"
+            rows="5"
+            required
+            class="focus:border-pelican-teal focus:ring-pelican-teal mt-1 block w-full rounded-lg border-gray-300 shadow-sm"
+        ></textarea>
+    </div>
+    <button
+        type="submit"
+        class="bg-pelican-teal hover:bg-pelican-teal-dark w-full rounded-lg px-6 py-3 font-medium text-white transition-colors md:w-auto"
+    >
+        Send Message
+    </button>
+</form>
+<p
+    id="contact-message"
+    class="mt-4 hidden text-sm"
+>
+</p>
+
+<script>
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const message = document.getElementById('contact-message');
+
+    form?.addEventListener('submit', async e => {
+        e.preventDefault();
+        const formData = new FormData(form);
+
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (res.ok) {
+                if (message) {
+                    message.textContent =
+                        "Thanks for your message! We'll be in touch soon.";
+                    message.className = 'mt-4 text-sm text-green-600';
+                }
+                form.reset();
+            } else {
+                throw new Error('Failed to send');
+            }
+        } catch {
+            if (message) {
+                message.textContent = 'Something went wrong. Please try again.';
+                message.className = 'mt-4 text-sm text-red-600';
+            }
+        }
+        message?.classList.remove('hidden');
+    });
+</script>

@@ -1,0 +1,86 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Button from '@/components/ui/Button.astro';
+
+const programs = (await getCollection('programs')).sort(
+    (a, b) => a.data.order - b.data.order,
+);
+---
+
+<BaseLayout
+    title="Programs"
+    description="Explore our performing arts programs for all ages"
+>
+    <section class="py-20">
+        <div class="mx-auto max-w-7xl px-4">
+            <SectionHeading
+                title="Our Programs"
+                subtitle="Find the perfect program for your performing arts journey"
+            />
+
+            <div class="space-y-16">
+                {
+                    programs.map((program, index) => (
+                        <article
+                            id={program.slug}
+                            class="scroll-mt-24"
+                        >
+                            <div
+                                class:list={[
+                                    'grid items-center gap-8 lg:grid-cols-2',
+                                    index % 2 === 1 && 'lg:grid-flow-dense',
+                                ]}
+                            >
+                                <div
+                                    class:list={[
+                                        index % 2 === 1 && 'lg:col-start-2',
+                                    ]}
+                                >
+                                    {program.data.image && (
+                                        <img
+                                            src={program.data.image}
+                                            alt={program.data.title}
+                                            class="rounded-xl shadow-lg"
+                                            loading="lazy"
+                                        />
+                                    )}
+                                    {!program.data.image && (
+                                        <div class="bg-pelican-teal/10 flex aspect-video items-center justify-center rounded-xl">
+                                            <span class="text-6xl">🎭</span>
+                                        </div>
+                                    )}
+                                </div>
+                                <div>
+                                    <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">
+                                        {program.data.title}
+                                    </h2>
+                                    {program.data.ageRange && (
+                                        <p class="text-pelican-teal mt-2 text-lg font-medium">
+                                            {program.data.ageRange}
+                                        </p>
+                                    )}
+                                    <p class="mt-4 text-lg text-gray-600">
+                                        {program.data.description}
+                                    </p>
+                                    {program.data.schedule && (
+                                        <p class="mt-4 text-gray-500">
+                                            <strong>Schedule:</strong>{' '}
+                                            {program.data.schedule}
+                                        </p>
+                                    )}
+                                    <div class="mt-6">
+                                        <Button href="/contact">
+                                            Enquire Now
+                                        </Button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+</BaseLayout>
