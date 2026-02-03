@@ -1,0 +1,36 @@
+---
+interface Program {
+  title: string;
+  description: string;
+  image: string;
+}
+
+interface Props {
+  items: Program[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="py-12">
+  <div class="mx-auto w-full max-w-6xl px-6">
+    <div class="mb-6 max-w-2xl">
+      <h2 class="text-2xl font-semibold text-slate-900">Programs for every performer</h2>
+      <p class="mt-2 text-sm text-slate-600">
+        From academy classes to holiday intensives, Pelican Productions offers pathways for young
+        performers and adult artists.
+      </p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-3">
+      {items.map((item) => (
+        <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <img src={item.image} alt={item.title} class="h-44 w-full object-cover" loading="lazy" />
+          <div class="p-5">
+            <h3 class="text-lg font-semibold text-slate-900">{item.title}</h3>
+            <p class="mt-2 text-sm text-slate-600">{item.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

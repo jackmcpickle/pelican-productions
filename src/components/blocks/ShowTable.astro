@@ -1,0 +1,43 @@
+---
+interface ShowItem {
+  name: string;
+  date: string;
+  link: string;
+}
+
+interface Props {
+  items: ShowItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+  <table class="w-full text-left text-sm">
+    <thead class="bg-slate-100 text-xs uppercase text-slate-500">
+      <tr>
+        <th class="px-6 py-3">Show</th>
+        <th class="px-6 py-3">Date</th>
+        <th class="px-6 py-3">Details</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-200">
+      {items.map((item) => (
+        <tr>
+          <td class="px-6 py-4 font-medium text-slate-900">{item.name}</td>
+          <td class="px-6 py-4 text-slate-600">{item.date}</td>
+          <td class="px-6 py-4">
+            <a
+              class="text-sm font-semibold text-orange-600 hover:text-orange-500"
+              href={item.link}
+              target="_blank"
+              rel="noreferrer"
+            >
+              View Show
+            </a>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

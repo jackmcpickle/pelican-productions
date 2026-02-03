@@ -1,0 +1,79 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/ui/PageHero.astro';
+import Section from '@/components/ui/Section.astro';
+import GalleryGrid from '@/components/blocks/GalleryGrid.astro';
+import FaqList from '@/components/blocks/FaqList.astro';
+import TestimonialsGrid from '@/components/blocks/TestimonialsGrid.astro';
+import ShowTable from '@/components/blocks/ShowTable.astro';
+import ContactForm from '@/components/blocks/ContactForm.astro';
+import TeamGrid from '@/components/blocks/TeamGrid.astro';
+import { siteInfo } from '@/data/site';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+  return pages
+    .filter((page) => page.slug !== 'home')
+    .map((page) => ({ params: { slug: page.slug } }));
+}
+
+const pages = await getCollection('pages');
+const page = pages.find((entry) => entry.slug === Astro.params.slug);
+if (!page) {
+  throw new Error('Page not found');
+}
+const { data, render } = page;
+const { Content } = await render();
+---
+
+<BaseLayout title={data.title} description={data.description}>
+  <PageHero
+    title={data.hero?.title ?? data.title}
+    subtitle={data.hero?.subtitle}
+    image={data.hero?.image}
+  />
+  <Section>
+    <article class="prose prose-slate max-w-none">
+      <Content />
+    </article>
+  </Section>
+  {data.gallery && (
+    <Section title="Gallery">
+      <GalleryGrid items={data.gallery} />
+    </Section>
+  )}
+  {data.shows && (
+    <Section title="Shows">
+      <ShowTable items={data.shows} />
+    </Section>
+  )}
+  {data.faqs && (
+    <Section title="FAQ">
+      <FaqList items={data.faqs} />
+    </Section>
+  )}
+  {data.testimonials && (
+    <Section title="Testimonials">
+      <TestimonialsGrid items={data.testimonials} />
+    </Section>
+  )}
+  {data.team && (
+    <Section title="Team">
+      <TeamGrid groups={data.team} />
+    </Section>
+  )}
+  {data.contact && (
+    <Section title="Contact Details">
+      <div class="grid gap-6 md:grid-cols-[1fr_2fr]">
+        <div class="rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-600 shadow-sm">
+          <p class="text-sm font-semibold text-slate-900">Get in touch</p>
+          <p class="mt-3">Phone: {siteInfo.phone}</p>
+          <p>Email: {siteInfo.email}</p>
+          <p class="mt-3">{siteInfo.address}</p>
+        </div>
+        <ContactForm heading={data.contact.heading} description={data.contact.description} />
+      </div>
+    </Section>
+  )}
+</BaseLayout>
