@@ -1,0 +1,11 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig.json",
+    "compilerOptions": {
+        "composite": true,
+        "lib": ["ES2022"],
+        "moduleResolution": "nodenext",
+        "module": "NodeNext",
+        "types": ["node"],
+    },
+    "include": ["astro.config.mjs", "drizzle.config.ts", "vitest.config.ts"],
+}

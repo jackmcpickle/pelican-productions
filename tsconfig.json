@@ -1,5 +1,12 @@
 {
-  "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"]
+    "$schema": "https://json.schemastore.org/tsconfig.json",
+    "extends": "astro/tsconfigs/strictest",
+    "compilerOptions": {
+        "paths": {
+            "@/*": ["./src/*"],
+        },
+    },
+    "include": ["src", ".astro"],
+    "exclude": ["node_modules", "dist"],
+    "references": [{ "path": "./tsconfig.node.json" }],
 }
