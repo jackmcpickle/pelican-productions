@@ -1,5 +1,7 @@
 ---
 import { footerMenu, quickLinks, siteInfo, socialLinks } from '@/data/site';
+import YouTubeIcon from '@/components/icons/YouTubeIcon.astro';
+import FacebookIcon from '@/components/icons/FacebookIcon.astro';
 ---
 
 <footer class="border-t border-slate-200 bg-white">
@@ -39,15 +41,20 @@ import { footerMenu, quickLinks, siteInfo, socialLinks } from '@/data/site';
     </div>
     <div>
       <p class="text-sm font-semibold text-slate-900">Social</p>
-      <ul class="mt-3 space-y-2 text-sm text-slate-600">
+      <div class="mt-3 flex gap-3">
         {socialLinks.map((link) => (
-          <li>
-            <a class="transition hover:text-slate-900" href={link.href}>
-              {link.label}
-            </a>
-          </li>
+          <a
+            class="text-slate-600 transition hover:text-slate-900"
+            href={link.href}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={link.label}
+          >
+            {link.label === 'YouTube' && <YouTubeIcon />}
+            {link.label === 'Facebook' && <FacebookIcon />}
+          </a>
         ))}
-      </ul>
+      </div>
     </div>
   </div>
   <div class="border-t border-slate-200 py-4 text-center text-xs text-slate-500">

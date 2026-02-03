@@ -1,15 +1,14 @@
-@import "tailwindcss";
-@plugin "@tailwindcss/forms";
-@plugin "@tailwindcss/typography";
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
 
-:root {
-  color-scheme: light;
-}
-
-body {
-  @apply bg-slate-50 text-slate-900 antialiased;
+@theme {
+    --color-primary: #008080;
+    --color-secondary: #f0425d;
+    --color-teritary: #d4af37;
+    --color-navy: #1a1a2e;
 }
 
 img {
-  @apply max-w-full;
+    @apply max-w-full;
 }

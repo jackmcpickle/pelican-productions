@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/ui/PageHero.astro';
+import Section from '@/components/ui/Section.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.slug } }));
+}
+
+const posts = await getCollection('blog');
+const post = posts.find((entry) => entry.slug === Astro.params.slug);
+if (!post) {
+  throw new Error('Post not found');
+}
+const { data, render } = post;
+const { Content } = await render();
+
+const formattedDate = new Intl.DateTimeFormat('en-AU', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+}).format(new Date(data.pubDate));
+---
+
+<BaseLayout title={data.title} description={data.description}>
+  <PageHero title={data.title} subtitle={formattedDate} image={data.coverImage} />
+  <Section>
+    <article class="prose prose-slate max-w-none">
+      <Content />
+    </article>
+  </Section>
+</BaseLayout>

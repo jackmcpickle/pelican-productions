@@ -1,0 +1,72 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/ui/PageHero.astro';
+import Section from '@/components/ui/Section.astro';
+
+const posts = (await getCollection('blog')).sort(
+    (a, b) =>
+        new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
+);
+
+const formatDate = (dateString: string) =>
+    new Intl.DateTimeFormat('en-AU', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+    }).format(new Date(dateString));
+---
+
+<BaseLayout
+    title="A Pelican Life"
+    description="News, announcements, and behind-the-scenes stories from Pelican Productions."
+>
+    <PageHero
+        title="A Pelican Life"
+        subtitle="News, announcements, and behind-the-scenes stories from Pelican Productions."
+        image="/images/hero-lights-camera-action.png"
+    />
+    <Section>
+        <div class="grid gap-6 md:grid-cols-2">
+            {
+                posts.map(post => (
+                    <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                        {post.data.coverImage && (
+                            <img
+                                src={post.data.coverImage}
+                                alt={post.data.title}
+                                class="h-52 w-full object-cover"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        )}
+                        <div class="space-y-3 p-6">
+                            <p class="text-xs font-semibold tracking-wide text-slate-500 uppercase">
+                                {formatDate(post.data.pubDate)}
+                            </p>
+                            <h2 class="text-xl font-semibold text-slate-900">
+                                <a
+                                    class="hover:text-primary transition"
+                                    href={`/blog/${post.slug}`}
+                                >
+                                    {post.data.title}
+                                </a>
+                            </h2>
+                            {post.data.description && (
+                                <p class="text-sm text-slate-600">
+                                    {post.data.description}
+                                </p>
+                            )}
+                            <a
+                                class="text-primary hover:text-navy text-sm font-semibold transition"
+                                href={`/blog/${post.slug}`}
+                            >
+                                Read article
+                            </a>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+    </Section>
+</BaseLayout>

@@ -1,5 +1,5 @@
 ---
-title: "About Us"
+title: "About"
 description: "Pelican Productions has been a vital part of South Australia’s performing arts community since 2004."
 hero:
   title: "About Pelican Productions"
