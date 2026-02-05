@@ -38,32 +38,32 @@ const { Content } = await render();
       <Content />
     </article>
   </Section>
-  {data.gallery && (
+  {data.gallery?.length && (
     <Section title="Gallery">
       <GalleryGrid items={data.gallery} />
     </Section>
   )}
-  {data.shows && (
+  {data.shows?.length && (
     <Section title="Shows">
       <ShowTable items={data.shows} />
     </Section>
   )}
-  {data.faqs && (
+  {data.faqs?.length && (
     <Section title="FAQ">
       <FaqList items={data.faqs} />
     </Section>
   )}
-  {data.testimonials && (
+  {data.testimonials?.length && (
     <Section title="Testimonials">
       <TestimonialsGrid items={data.testimonials} />
     </Section>
   )}
-  {data.team && (
+  {data.team?.length && (
     <Section title="Team">
       <TeamGrid groups={data.team} />
     </Section>
   )}
-  {data.contact && (
+  {data.contact && (data.contact.heading || data.contact.description) && (
     <Section title="Contact Details">
       <div class="grid gap-6 md:grid-cols-[1fr_2fr]">
         <div class="rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-600 shadow-sm">

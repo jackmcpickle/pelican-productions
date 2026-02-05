@@ -1,4 +1,7 @@
 import { defineConfig, envField } from 'astro/config';
+import react from '@astrojs/react';
+import markdoc from '@astrojs/markdoc';
+import keystatic from '@keystatic/astro';
 import tailwindcss from '@tailwindcss/vite';
 import cloudflare from '@astrojs/cloudflare';
 import { fileURLToPath } from 'node:url';
@@ -15,6 +18,7 @@ export default defineConfig({
     },
     output: 'server',
     trailingSlash: 'ignore',
+    integrations: [react(), markdoc(), keystatic()],
     vite: {
         plugins: [tailwindcss()],
         resolve: {

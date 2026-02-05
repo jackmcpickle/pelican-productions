@@ -23,10 +23,10 @@ const { data } = home;
     image={data.hero?.image ?? '/images/hero-lights-camera-action.png'}
     cta={{ label: 'Explore Programs', href: '/programs' }}
   />
-  {data.highlights && <HomeHighlights items={data.highlights} />}
-  {data.programs && <HomePrograms items={data.programs} />}
-  {data.gallery && <HomeGallery items={data.gallery} />}
-  {data.testimonials && (
+  {data.highlights?.length && <HomeHighlights items={data.highlights} />}
+  {data.programs?.length && <HomePrograms items={data.programs} />}
+  {data.gallery?.length && <HomeGallery items={data.gallery} />}
+  {data.testimonials?.length && (
     <section class="py-12">
       <div class="mx-auto w-full max-w-6xl px-6">
         <div class="mb-6 max-w-2xl">
