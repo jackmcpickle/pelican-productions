@@ -1,9 +1,16 @@
 {
     "$schema": "node_modules/wrangler/config-schema.json",
     "name": "pelican-productions",
+    "account_id": "16a04bbc76ee5eccbcc1d6c39bc9a797",
     "main": "@astrojs/cloudflare/entrypoints/server",
-    "compatibility_date": "2026-02-03",
-    "compatibility_flags": ["nodejs_compat"],
+    "compatibility_date": "2026-09-04",
+    "compatibility_flags": [
+        "nodejs_compat",
+        // workerd process v2 makes Astro treat Workers as Node and return
+        // async-iterable bodies, which render as "[object Object]".
+        // https://github.com/withastro/astro/issues/14511
+        "disable_nodejs_process_v2",
+    ],
     "workers_dev": true,
     "routes": [],
     "assets": {
