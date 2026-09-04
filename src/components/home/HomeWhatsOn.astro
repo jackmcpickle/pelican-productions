@@ -5,6 +5,10 @@ import Card from '@/components/ui/Card.astro';
 import Container from '@/components/ui/Container.astro';
 import Heading from '@/components/ui/Heading.astro';
 import { newsItems } from '@/data/home';
+
+function isExternal(href: string) {
+    return href.startsWith('http');
+}
 ---
 
 <section id="whats-on" class="mt-16 md:mt-20">
@@ -38,8 +42,12 @@ import { newsItems } from '@/data/home';
                             <Button
                                 href={item.href}
                                 class="self-start"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                target={isExternal(item.href) ? '_blank' : undefined}
+                                rel={
+                                    isExternal(item.href)
+                                        ? 'noopener noreferrer'
+                                        : undefined
+                                }
                             >
                                 {item.cta}
                             </Button>

@@ -51,7 +51,7 @@ export const whatsOnNews: WhatsOnNewsItem[] = [
         body: 'Audition submissions now open for the 2027 intake. Accredited training in partnership with Empowerdance PTY LTD RTO 40397.',
         facts: ['Submit your audition online', '2027 intake'],
         cta: 'Audition info',
-        href: 'https://www.pelicanproductions.com.au/cert4.html',
+        href: '/cert4',
         ctaVariant: 'primary',
     },
     {
@@ -87,7 +87,7 @@ export const whatsOnNews: WhatsOnNewsItem[] = [
             '2026 full — waitlist for 2027',
         ],
         cta: 'Join the waitlist',
-        href: 'https://www.pelicanproductions.com.au/contact.html',
+        href: '/contact',
         ctaVariant: 'secondary',
     },
 ];

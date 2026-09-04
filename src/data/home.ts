@@ -48,7 +48,7 @@ export const newsItems = [
         title: 'Cert IV & Diploma of Musical Theatre',
         body: 'Accredited CUA40520 Cert IV auditions open now, and the new CUA50220 Diploma launches 2027 — full-time professional training, Tuesday to Friday. With Empowerdance RTO 40397.',
         cta: 'Audition info',
-        href: 'https://www.pelicanproductions.com.au/cert4.html',
+        href: '/cert4',
     },
 ];
 

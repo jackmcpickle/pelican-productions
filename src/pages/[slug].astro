@@ -13,12 +13,17 @@ import Card from '@/components/ui/Card.astro';
 import Heading from '@/components/ui/Heading.astro';
 import { siteInfo } from '@/data/site';
 
+export const prerender = true;
+
 const RESERVED_SLUGS = new Set([
   'musicals',
   'music-theatre-camp',
   'about',
   'about-us',
   'the-nest',
+  'cert4',
+  'contact',
+  'contact-us',
 ]);
 
 export async function getStaticPaths(): Promise<{ params: { slug: string } }[]> {
