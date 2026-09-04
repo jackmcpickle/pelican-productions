@@ -1,0 +1,78 @@
+---
+import Badge from '@/components/ui/Badge.astro';
+import Button from '@/components/ui/Button.astro';
+import Card from '@/components/ui/Card.astro';
+import Container from '@/components/ui/Container.astro';
+import Heading from '@/components/ui/Heading.astro';
+import { campBookingUrl, homeImages } from '@/data/home';
+---
+
+<section id="camp" class="mt-16 md:mt-20">
+    <Container>
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            <div class="flex flex-col gap-4">
+                <div class="overflow-hidden rounded-[40px]">
+                    <img
+                        src={homeImages.mtcPerformance}
+                        alt="Music Theatre Camp performance"
+                        class="h-[240px] w-full object-cover sm:h-[300px]"
+                        loading="lazy"
+                    />
+                </div>
+                <div class="overflow-hidden rounded-[40px] lg:min-h-[300px] lg:flex-1">
+                    <img
+                        src={homeImages.mtcCast}
+                        alt="Music Theatre Camp cast"
+                        class="h-[240px] w-full object-cover sm:h-[300px] lg:h-full lg:min-h-[300px]"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+
+            <Card variant="ink" class="flex flex-col gap-8">
+                <Badge>January school holidays</Badge>
+                <Heading as="h2" size="display">
+                    Summer.<br />Sorted.
+                </Heading>
+                <p class="text-body m-0">
+                    Two intensive day camps taking the best of Broadway and the
+                    West End, culminating in a fully staged extravaganza at the
+                    Michael Murray Performance Centre. Don't be fooled by the age
+                    of the cast.
+                </p>
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div class="border-white-dotted flex flex-col gap-2 border-t pt-4">
+                        <span class="font-display text-[40px] leading-none">
+                            Music Theatre Camp
+                        </span>
+                        <span class="text-sm leading-snug">
+                            4–17 Jan 2027 · 8–19yrs<br />$690 + GST ·
+                            Highgate/Fullarton
+                        </span>
+                    </div>
+                    <div class="border-white-dotted flex flex-col gap-2 border-t pt-4">
+                        <span class="font-display text-[40px] leading-none">
+                            Spotlight
+                        </span>
+                        <span class="text-sm leading-snug">
+                            4–9 Jan 2027 · 8–16yrs<br />$490 + GST · Lower
+                            Mitcham/Highgate
+                        </span>
+                    </div>
+                </div>
+                <p class="m-0 text-sm leading-snug">
+                    Auditions 9, 10, 11, 17, 18 October (optional — you don't
+                    need to audition to take part).
+                </p>
+                <Button
+                    href={campBookingUrl}
+                    class="self-start"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Book MTC / Spotlight 2027
+                </Button>
+            </Card>
+        </div>
+    </Container>
+</section>

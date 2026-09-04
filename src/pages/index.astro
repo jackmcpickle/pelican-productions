@@ -1,48 +1,29 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import HomeHero from '@/components/home/HomeHero.astro';
-import HomeHighlights from '@/components/home/HomeHighlights.astro';
+import HomeTicker from '@/components/home/HomeTicker.astro';
+import HomeWhatsOn from '@/components/home/HomeWhatsOn.astro';
+import HomeStats from '@/components/home/HomeStats.astro';
 import HomePrograms from '@/components/home/HomePrograms.astro';
-import HomeGallery from '@/components/home/HomeGallery.astro';
-import TestimonialsGrid from '@/components/blocks/TestimonialsGrid.astro';
-import HomeCTA from '@/components/home/HomeCTA.astro';
-
-const pages = await getCollection('pages');
-const home = pages.find((entry: CollectionEntry<'pages'>) => entry.slug === 'home');
-if (!home) {
-  throw new Error('Home content not found');
-}
-const { data } = home;
+import HomeCamps from '@/components/home/HomeCamps.astro';
+import HomeShows from '@/components/home/HomeShows.astro';
+import HomeSingOz from '@/components/home/HomeSingOz.astro';
+import HomeAbout from '@/components/home/HomeAbout.astro';
+import { homeMeta } from '@/data/home';
 ---
 
-<BaseLayout title={data.title} description={data.description}>
-  <HomeHero
-    title={data.hero?.title ?? data.title}
-    subtitle={data.hero?.subtitle ?? ''}
-    image={data.hero?.image ?? '/images/hero-lights-camera-action.png'}
-    cta={{ label: 'Explore Programs', href: '/programs' }}
-  />
-  {data.highlights && <HomeHighlights items={data.highlights} />}
-  {data.programs && <HomePrograms items={data.programs} />}
-  {data.gallery && <HomeGallery items={data.gallery} />}
-  {data.testimonials && (
-    <section class="py-12">
-      <div class="mx-auto w-full max-w-6xl px-6">
-        <div class="mb-6 max-w-2xl">
-          <h2 class="text-2xl font-semibold text-slate-900">What our community says</h2>
-          <p class="mt-2 text-sm text-slate-600">
-            Families and performers share their experiences with Pelican Productions.
-          </p>
-        </div>
-        <TestimonialsGrid items={data.testimonials} />
-      </div>
-    </section>
-  )}
-  <HomeCTA
-    title="Ready to join the Pelican community?"
-    description="Reach out to learn more about programs, enrolments, and upcoming performances."
-    primary={{ label: 'Contact Us', href: '/contact-us' }}
-    secondary={{ label: 'View Shows', href: '/shows' }}
-  />
+<BaseLayout
+    title={homeMeta.title}
+    description={homeMeta.description}
+    active=""
+>
+    <HomeHero />
+    <HomeTicker />
+    <HomeWhatsOn />
+    <HomeStats />
+    <HomePrograms />
+    <HomeCamps />
+    <HomeShows />
+    <HomeSingOz />
+    <HomeAbout />
 </BaseLayout>

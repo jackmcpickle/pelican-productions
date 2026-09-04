@@ -1,4 +1,8 @@
 ---
+import { cn } from '@/lib/cn';
+import Card from '@/components/ui/Card.astro';
+import Button from '@/components/ui/Button.astro';
+
 interface ShowItem {
   name: string;
   date: string;
@@ -12,32 +16,27 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-  <table class="w-full text-left text-sm">
-    <thead class="bg-slate-100 text-xs uppercase text-slate-500">
-      <tr>
-        <th class="px-6 py-3">Show</th>
-        <th class="px-6 py-3">Date</th>
-        <th class="px-6 py-3">Details</th>
-      </tr>
-    </thead>
-    <tbody class="divide-y divide-slate-200">
-      {items.map((item) => (
-        <tr>
-          <td class="px-6 py-4 font-medium text-slate-900">{item.name}</td>
-          <td class="px-6 py-4 text-slate-600">{item.date}</td>
-          <td class="px-6 py-4">
-            <a
-              class="text-sm font-semibold text-orange-600 hover:text-orange-500"
-              href={item.link}
-              target="_blank"
-              rel="noreferrer"
-            >
-              View Show
-            </a>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
+<Card variant="cream" class="flex flex-col">
+  {items.map((item, index) => (
+    <div
+      class={cn(
+        'border-ink-dotted flex flex-col gap-2 border-t-[1.5px] pt-4',
+        index === 0 && 'border-t-0 pt-0',
+      )}
+    >
+      <span class="font-display text-[clamp(1.5rem,3vw,40px)] leading-none">
+        {item.name}
+      </span>
+      <span class="text-sm leading-snug">{item.date}</span>
+      <Button
+        href={item.link}
+        variant="secondary"
+        class="mt-2 self-start"
+        target="_blank"
+        rel="noreferrer"
+      >
+        View Show
+      </Button>
+    </div>
+  ))}
+</Card>

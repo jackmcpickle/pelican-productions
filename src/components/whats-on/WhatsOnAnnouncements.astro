@@ -1,0 +1,51 @@
+---
+import Badge from '@/components/ui/Badge.astro';
+import Button from '@/components/ui/Button.astro';
+import Card from '@/components/ui/Card.astro';
+import Container from '@/components/ui/Container.astro';
+import Heading from '@/components/ui/Heading.astro';
+import { whatsOnNews } from '@/data/whats-on';
+
+function isExternal(href: string) {
+    return href.startsWith('http');
+}
+---
+
+<section class="mt-16">
+    <Container>
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {
+                whatsOnNews.map((item) => (
+                    <Card variant="cream" class="flex flex-col gap-5">
+                        <div class="flex items-center justify-between gap-2">
+                            <Badge tone="sun">{item.tag}</Badge>
+                            <span class="text-xs font-normal">{item.date}</span>
+                        </div>
+                        <Heading as="h2" size="card">
+                            {item.title}
+                        </Heading>
+                        <p class="text-body m-0 flex-1">{item.body}</p>
+                        <div class="border-ink-dotted flex flex-col gap-1.5 border-t-[1.5px] pt-4">
+                            {item.facts.map((fact) => (
+                                <span class="text-sm leading-snug">{fact}</span>
+                            ))}
+                        </div>
+                        <Button
+                            href={item.href}
+                            variant={item.ctaVariant}
+                            class="self-start"
+                            target={isExternal(item.href) ? '_blank' : undefined}
+                            rel={
+                                isExternal(item.href)
+                                    ? 'noopener noreferrer'
+                                    : undefined
+                            }
+                        >
+                            {item.cta}
+                        </Button>
+                    </Card>
+                ))
+            }
+        </div>
+    </Container>
+</section>

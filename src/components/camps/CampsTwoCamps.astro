@@ -1,0 +1,13 @@
+---
+import Container from '@/components/ui/Container.astro';
+import CampCard from '@/components/camps/CampCard.astro';
+import { camps } from '@/data/camps';
+---
+
+<section class="mt-16 md:mt-20">
+    <Container>
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            {camps.map((camp) => <CampCard camp={camp} />)}
+        </div>
+    </Container>
+</section>

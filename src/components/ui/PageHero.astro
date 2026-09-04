@@ -1,25 +1,46 @@
 ---
+import Container from '@/components/ui/Container.astro';
+import Heading from '@/components/ui/Heading.astro';
+import MediaFrame from '@/components/ui/MediaFrame.astro';
+import { cn } from '@/lib/cn';
+
 interface Props {
-  title: string;
-  subtitle?: string;
-  image?: string;
+    title: string;
+    subtitle?: string;
+    image?: string;
+    class?: string;
 }
 
-const { title, subtitle, image } = Astro.props;
+const { title, subtitle, image, class: className } = Astro.props;
 ---
 
-<section class="relative overflow-hidden bg-slate-900 text-white">
-  {image && (
-    <img
-      src={image}
-      alt=""
-      class="absolute inset-0 h-full w-full object-cover opacity-40"
-      loading="eager"
-    />
-  )}
-  <div class="relative mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 py-16">
-    <p class="text-sm uppercase tracking-[0.2em] text-slate-200">Pelican Productions</p>
-    <h1 class="text-3xl font-semibold md:text-5xl">{title}</h1>
-    {subtitle && <p class="max-w-2xl text-base text-slate-200 md:text-lg">{subtitle}</p>}
-  </div>
+<section class={cn('mt-12 md:mt-16', className)}>
+    <Container>
+        <div
+            class={cn(
+                'flex flex-col gap-8',
+                image && 'md:grid md:grid-cols-2 md:items-center md:gap-12',
+            )}
+        >
+            <div class="flex max-w-2xl flex-col gap-6">
+                <Heading as="h1" size="display">
+                    {title}
+                </Heading>
+                {
+                    subtitle && (
+                        <p class="text-body-lg m-0 max-w-xl">{subtitle}</p>
+                    )
+                }
+            </div>
+            {
+                image && (
+                    <MediaFrame
+                        src={image}
+                        alt=""
+                        class="min-h-[280px] md:min-h-[360px]"
+                    />
+                )
+            }
+        </div>
+    </Container>
 </section>

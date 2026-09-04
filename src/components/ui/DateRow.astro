@@ -1,0 +1,23 @@
+---
+import { cn } from '@/lib/cn';
+
+interface Props {
+    when: string;
+    what: string;
+    class?: string | undefined;
+}
+
+const { when, what, class: className } = Astro.props;
+---
+
+<div
+    class={cn(
+        'border-white-dotted flex flex-col gap-2 border-t-[1.5px] pt-4',
+        className,
+    )}
+>
+    <span class="font-display text-[clamp(1.5rem,3vw,40px)] leading-none">
+        {what}
+    </span>
+    <span class="text-sm leading-snug">{when}</span>
+</div>

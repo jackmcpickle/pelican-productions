@@ -1,0 +1,205 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import Section from '@/components/ui/Section.astro';
+import Heading from '@/components/ui/Heading.astro';
+import MediaFrame from '@/components/ui/MediaFrame.astro';
+import Halftone from '@/components/ui/Halftone.astro';
+import Badge from '@/components/ui/Badge.astro';
+import Card from '@/components/ui/Card.astro';
+import Button from '@/components/ui/Button.astro';
+import { socialLinks } from '@/data/site';
+
+const facebookHref =
+    socialLinks.find((link) => link.label === 'Facebook')?.href ?? '#';
+
+const values = [
+    {
+        variant: 'cream' as const,
+        title: 'Fun first',
+        body: 'Central to our vision is the belief that theatre should be fun and enriching — a safe, welcoming space where young performers from across South Australia grow artistically, socially and personally.',
+    },
+    {
+        variant: 'violet' as const,
+        title: 'Everyone belongs',
+        body: 'A diverse community where every young person has the chance to discover their potential, express themselves creatively and build lasting friendships.',
+    },
+    {
+        variant: 'cream' as const,
+        title: 'Excellence, always',
+        body: 'Committed to pushing boundaries, nurturing talent and shaping the next generation of performing artists — with productions that have won and been nominated for multiple awards.',
+    },
+];
+
+const directors = [
+    {
+        name: 'Jen Frith',
+        role: 'Co-founder & Director',
+    },
+    {
+        name: 'Kylie Green',
+        role: 'Co-founder & Director · Vocal Academy tutor',
+    },
+];
+---
+
+<BaseLayout
+    title="About | Pelican Productions"
+    description="Pelican Productions has been a vital part of South Australia's performing arts community since 2004."
+    active="about"
+>
+    <section class="mt-12 md:mt-16">
+        <Container>
+            <div
+                class="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-[1.2fr_1fr]"
+            >
+                <Heading as="h1" size="hero" class="self-center">
+                    Theatre should be fun.{' '}
+                    <span class="text-flame">And it should change you.</span>
+                </Heading>
+                <MediaFrame class="relative min-h-[360px] md:min-h-[480px]">
+                    <div
+                        slot="media"
+                        class="absolute inset-0 bg-gradient-to-br from-violet from-45% to-flame"
+                    >
+                        <Halftone />
+                    </div>
+                    <img
+                        src="/images/logo.jpg"
+                        alt="Pelican Productions logo"
+                        class="absolute top-1/2 left-1/2 h-[200px] w-[200px] -translate-x-1/2 -translate-y-1/2 rounded-full object-cover md:h-[280px] md:w-[280px]"
+                        loading="eager"
+                    />
+                    <Badge slot="badges">Founded 2004 · Adelaide</Badge>
+                </MediaFrame>
+            </div>
+        </Container>
+    </section>
+
+    <Section class="mt-16 md:mt-20">
+        <div
+            class="grid grid-cols-1 items-start gap-12 md:grid-cols-2 md:gap-16"
+        >
+            <Heading size="display">Our vision</Heading>
+            <div class="flex flex-col gap-6">
+                <p class="text-body m-0">
+                    Pelican Productions envisions a vibrant future where young
+                    people in South Australia thrive through the transformative
+                    power of live theatre. Founded in 2004 by Directors Jen Frith
+                    and Kylie Green, we create innovative and entertaining
+                    theatrical experiences that inspire, educate and elevate young
+                    performers.
+                </p>
+                <p class="text-body m-0">
+                    We aim to be a beacon of creativity and excellence in youth
+                    theatre — professional training and invaluable performance
+                    opportunities that equip performers with skills in singing,
+                    dancing and acting, and with teamwork, respect, confidence,
+                    empathy and resilience.
+                </p>
+                <p class="text-body m-0">
+                    Our teaching artists and creative teams are industry
+                    professionals who foster a supportive, inclusive environment.
+                    We strive to instil a love for the performing arts and a sense
+                    of belonging in every participant, regardless of race,
+                    ethnicity, gender, socio-economic status, national origin,
+                    sexual orientation, ability or faith.
+                </p>
+            </div>
+        </div>
+    </Section>
+
+    <Section class="mt-16 md:mt-20">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {
+                values.map((value) => (
+                    <Card
+                        variant={value.variant}
+                        class="flex min-h-[300px] flex-col gap-5"
+                    >
+                        <Heading
+                            as="h3"
+                            size="card"
+                            class="!text-[clamp(2rem,5vw,64px)] leading-none tracking-[0.02em]"
+                        >
+                            {value.title}
+                        </Heading>
+                        <p class="text-body m-0">{value.body}</p>
+                    </Card>
+                ))
+            }
+        </div>
+    </Section>
+
+    <Section class="mt-16 md:mt-20">
+        <div
+            class="grid grid-cols-1 items-start gap-12 md:grid-cols-2 md:gap-16"
+        >
+            <Heading size="display">The directors</Heading>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                {
+                    directors.map((director) => (
+                        <Card variant="cream" class="flex flex-col gap-4">
+                            <div
+                                class="flex h-[120px] w-[120px] items-center justify-center rounded-full bg-[repeating-linear-gradient(45deg,var(--color-paper)_0_8px,var(--color-cream)_8px_16px)] font-mono text-[11px] text-ink"
+                                aria-hidden="true"
+                            >
+                                photo
+                            </div>
+                            <Heading as="h3" size="card">
+                                {director.name}
+                            </Heading>
+                            <span class="text-sm">{director.role}</span>
+                        </Card>
+                    ))
+                }
+            </div>
+        </div>
+    </Section>
+
+    <Section class="mt-16 md:mt-20">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <Card variant="flame" class="flex flex-col gap-6">
+                <Badge tone="sun" class="self-start">Accredited training</Badge>
+                <Heading
+                    as="h2"
+                    size="small"
+                    class="!text-[clamp(2rem,5vw,64px)] leading-none tracking-[0.02em]"
+                >
+                    Cert IV & Diploma of Musical Theatre
+                </Heading>
+                <p class="text-body m-0">
+                    Professional post-school training in partnership with
+                    Empowerdance PTY LTD RTO 40397. Cert IV auditions open for
+                    2027; the Diploma launches 2027.
+                </p>
+                <Button href="/cert4" variant="inverse" class="self-start">
+                    Audition info
+                </Button>
+            </Card>
+            <Card variant="cream" class="flex flex-col gap-6">
+                <Badge tone="sun" class="self-start">Get in touch</Badge>
+                <Heading
+                    as="h2"
+                    size="small"
+                    class="!text-[clamp(2rem,5vw,64px)] leading-none tracking-[0.02em]"
+                >
+                    Come say hi at The Nest
+                </Heading>
+                <div class="text-body flex flex-col gap-2">
+                    <span>57A Price Avenue, Mitcham SA</span>
+                    <span>
+                        Join 'The Pelican Collective' Facebook group for all the
+                        latest news.
+                    </span>
+                </div>
+                <div class="flex flex-wrap gap-3">
+                    <Button href="/contact-us">Contact us</Button>
+                    <Button href={facebookHref} variant="secondary" target="_blank" rel="noopener noreferrer">
+                        Facebook
+                    </Button>
+                </div>
+            </Card>
+        </div>
+    </Section>
+</BaseLayout>

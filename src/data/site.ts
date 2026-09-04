@@ -2,34 +2,37 @@ export const siteInfo = {
     name: 'Pelican Productions',
     tagline: 'Inspiring young performers across South Australia.',
     address: '32 Kyre Avenue Kingswood SA 5062 Australia',
+    nestAddress: 'The Nest · 57A Price Avenue, Mitcham SA',
+    photoCredit: 'Photography Oliver Toth, Accent Photography',
     phone: '0407 619 925',
     email: 'contact@pelicanproductions.com.au',
+    url: 'https://pelicanproductions.com.au',
 };
 
-export const navigation = [
-    { label: 'About', href: '/about-us' },
-    { label: 'The Nest', href: '/the-nest' },
-    { label: 'Programs', href: '/programs' },
-    { label: 'Music Theatre Camp', href: '/music-theatre-camp' },
-    { label: 'Shows', href: '/shows' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Contact', href: '/contact-us' },
+export type NavId = 'whats-on' | 'nest' | 'camps' | 'musicals' | 'about';
+
+export const navigation: { id: NavId; label: string; href: string }[] = [
+    { id: 'whats-on', label: "What's on", href: '/whats-on' },
+    { id: 'nest', label: 'The Nest', href: '/the-nest' },
+    { id: 'camps', label: 'Summer camps', href: '/summer-camps' },
+    { id: 'musicals', label: 'Musicals', href: '/musicals' },
+    { id: 'about', label: 'About', href: '/about' },
 ];
 
+export const portalUrl =
+    'https://dancestudio-pro.com/online/pelicanproductions';
+
 export const footerMenu = [
-    { label: 'Home', href: '/' },
-    { label: 'About Us', href: '/about-us' },
-    { label: 'Photo Gallery', href: '/photo-gallery' },
-    { label: 'Services', href: '/services' },
-    { label: 'FAQ', href: '/faq' },
-    { label: 'Testimonials', href: '/testimonials' },
+    { label: "What's on", href: '/whats-on' },
+    { label: 'The Nest', href: '/the-nest' },
+    { label: 'Summer camps', href: '/summer-camps' },
+    { label: 'Musicals', href: '/musicals' },
+    { label: 'About', href: '/about' },
 ];
 
 export const quickLinks = [
-    { label: 'FAQ', href: '/faq' },
-    { label: 'Privacy Policy', href: '/pelican-productions-privacy-policy' },
-    { label: 'The Team', href: '/the-team' },
-    { label: 'Shop', href: 'http://pelicanproductions.com.au/shop/' },
+    { label: 'Facebook', href: 'https://www.facebook.com/PelicanProductionsSA/?ref=bookmarks' },
+    { label: 'Privacy', href: '/pelican-productions-privacy-policy' },
 ];
 
 export const socialLinks = [

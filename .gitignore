@@ -22,3 +22,11 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+design/
+
+# test artifacts
+e2e/**/artifacts/
+**/artifacts/
+test-results/
+.wrangler/

@@ -1,27 +1,82 @@
 ---
+import Badge from '@/components/ui/Badge.astro';
 import Button from '@/components/ui/Button.astro';
-
-interface Props {
-  title: string;
-  subtitle: string;
-  image: string;
-  cta: {
-    label: string;
-    href: string;
-  };
-}
-
-const { title, subtitle, image, cta } = Astro.props;
+import Container from '@/components/ui/Container.astro';
+import Heading from '@/components/ui/Heading.astro';
+import { homeImages } from '@/data/home';
 ---
 
-<section class="relative overflow-hidden bg-slate-900 text-white">
-  <img src={image} alt="" class="absolute inset-0 h-full w-full object-cover opacity-40" />
-  <div class="relative mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-20">
-    <p class="text-sm uppercase tracking-[0.2em] text-slate-200">Pelican Productions</p>
-    <h1 class="text-4xl font-semibold md:text-6xl">{title}</h1>
-    <p class="max-w-2xl text-base text-slate-200 md:text-lg">{subtitle}</p>
-    <div>
-      <Button href={cta.href}>{cta.label}</Button>
-    </div>
-  </div>
+<section id="top" class="mt-12">
+    <Container>
+        <div
+            class="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-[1.1fr_1fr] lg:gap-8"
+        >
+            <div class="flex flex-col justify-between gap-10">
+                <div>
+                    <div class="mb-6 flex flex-wrap gap-2">
+                        <Badge>Adelaide youth theatre</Badge>
+                        <Badge tone="cream">Est. 2004</Badge>
+                    </div>
+                    <Heading
+                        as="h1"
+                        size="hero"
+                        class="text-6xl sm:text-8xl lg:text-[clamp(4rem,12vw,11.8rem)]"
+                    >
+                        Sing.<br />Dance.<br /><span class="text-flame"
+                            >Act.</span
+                        >
+                    </Heading>
+                </div>
+                <div class="flex max-w-[520px] flex-col gap-6">
+                    <p class="text-body-lg m-0">
+                        Classes, camps and full-scale musicals for young
+                        performers across South Australia. Professional tutors, a
+                        proper stage, and a flock that cheers loudest for each
+                        other.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <Button href="/the-nest" size="lg"
+                            >Find your class</Button
+                        >
+                        <Button href="/summer-camps" variant="secondary" size="lg"
+                            >Summer camp 2027</Button
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="relative min-h-[360px] overflow-hidden rounded-[40px] sm:min-h-[480px] lg:min-h-[560px]"
+                style="background: linear-gradient(135deg, #524ae9 0%, #524ae9 45%, #fc5000 100%)"
+            >
+                <div
+                    class="absolute inset-0 bg-[radial-gradient(#fc5000_36%,transparent_38%)] [background-size:18px_18px] [mask-image:linear-gradient(225deg,rgba(0,0,0,1)_20%,rgba(0,0,0,0.55)_55%,rgba(0,0,0,0.12)_100%)]"
+                    aria-hidden="true"
+                >
+                </div>
+                <div
+                    class="absolute inset-0 bg-[radial-gradient(#524ae9_30%,transparent_32%)] [background-size:10px_10px] [mask-image:linear-gradient(45deg,rgba(0,0,0,0.7)_0%,transparent_55%)]"
+                    aria-hidden="true"
+                >
+                </div>
+                <img
+                    src={homeImages.logo}
+                    alt="Pelican Productions logo"
+                    class="absolute top-1/2 left-1/2 h-48 w-48 -translate-x-1/2 -translate-y-1/2 rounded-[800px] object-cover sm:h-64 sm:w-64 lg:h-80 lg:w-80"
+                />
+                <div
+                    class="absolute right-8 bottom-8 left-8 flex items-end justify-between text-white"
+                >
+                    <div
+                        class="font-display text-[clamp(2rem,5vw,48px)] leading-none"
+                    >
+                        Pelican<br />Productions
+                    </div>
+                    <p class="m-0 text-right text-sm leading-snug">
+                        The Nest<br />57A Price Ave, Mitcham
+                    </p>
+                </div>
+            </div>
+        </div>
+    </Container>
 </section>

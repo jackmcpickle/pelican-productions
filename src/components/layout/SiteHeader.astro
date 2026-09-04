@@ -1,71 +1,123 @@
 ---
-import { navigation, siteInfo, socialLinks } from '@/data/site';
-import YouTubeIcon from '@/components/icons/YouTubeIcon.astro';
-import FacebookIcon from '@/components/icons/FacebookIcon.astro';
+import {
+    navigation,
+    portalUrl,
+    siteInfo,
+    type NavId,
+} from '@/data/site';
+import Button from '@/components/ui/Button.astro';
+import { cn } from '@/lib/cn';
+
+interface Props {
+    active?: NavId | '';
+}
+
+const { active = '' } = Astro.props;
+const navId = 'site-nav';
 ---
 
-<header class="bg-primary backdrop-blur">
+<header class="relative z-50 w-full">
     <div
-        class="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-6 py-4"
+        class="flex flex-wrap items-center justify-between gap-4"
     >
         <a
             href="/"
-            class="flex items-center gap-3"
+            class="flex shrink-0 items-center gap-3 whitespace-nowrap"
         >
             <img
-                src="/images/logo.svg"
-                alt={siteInfo.name}
-                class="h-10 w-auto md:h-12"
+                src="/images/logo.jpg"
+                alt=""
+                class="h-12 w-12 rounded-[800px] object-cover"
+                width="48"
+                height="48"
                 loading="eager"
                 decoding="async"
             />
-            <span class="sr-only">{siteInfo.name}</span>
+            <span class="font-display text-[32px] leading-none text-ink">
+                {siteInfo.name}
+            </span>
         </a>
+
         <nav
-            class="text-navy hidden items-center gap-6 text-sm font-semibold md:flex"
+            id={navId}
+            class="bg-cream hidden items-center gap-2 rounded-[800px] px-3 py-2 lg:flex"
+            aria-label="Main"
         >
             {
                 navigation.map(item => (
                     <a
-                        class="hover:text-teritary text-white transition"
                         href={item.href}
+                        class={cn(
+                            'rounded-[800px] px-3 py-2 text-base whitespace-nowrap transition-colors',
+                            item.id === active
+                                ? 'bg-ink text-white hover:text-white'
+                                : 'text-ink hover:bg-paper hover:text-ink',
+                        )}
+                        aria-current={item.id === active ? 'page' : undefined}
                     >
                         {item.label}
                     </a>
                 ))
             }
         </nav>
-        <div class="flex items-center gap-3">
-            {
-                socialLinks.map(link => (
-                    <a
-                        class="hover:text-teritary text-white transition"
-                        href={link.href}
+
+        <div class="hidden items-center gap-3 lg:flex">
+            <Button href={portalUrl} variant="secondary" target="_blank" rel="noreferrer">
+                Student portal
+            </Button>
+            <Button href={portalUrl} variant="primary" target="_blank" rel="noreferrer">
+                Enrol for Term 3
+            </Button>
+        </div>
+
+        <details class="group relative lg:hidden">
+            <summary
+                class="focus-ring bg-cream text-ink list-none rounded-[40px] border-[1.5px] border-ink px-4 py-2 text-base font-medium [&::-webkit-details-marker]:hidden"
+                aria-label="Open menu"
+            >
+                <span class="group-open:hidden">Menu</span>
+                <span class="hidden group-open:inline">Close</span>
+            </summary>
+            <div
+                class="bg-cream absolute top-full right-0 left-0 mt-2 flex flex-col gap-2 rounded-[40px] border-[1.5px] border-ink p-4 shadow-lg"
+            >
+                {
+                    navigation.map(item => (
+                        <a
+                            href={item.href}
+                            class={cn(
+                                'rounded-[800px] px-3 py-2 text-base transition-colors',
+                                item.id === active
+                                    ? 'bg-ink text-white hover:text-white'
+                                    : 'text-ink hover:bg-paper',
+                            )}
+                            aria-current={item.id === active ? 'page' : undefined}
+                        >
+                            {item.label}
+                        </a>
+                    ))
+                }
+                <div class="mt-2 flex flex-col gap-2 border-t border-ink/20 pt-3">
+                    <Button
+                        href={portalUrl}
+                        variant="secondary"
+                        class="w-full justify-center"
                         target="_blank"
                         rel="noreferrer"
-                        aria-label={link.label}
                     >
-                        {link.label === 'YouTube' && <YouTubeIcon />}
-                        {link.label === 'Facebook' && <FacebookIcon />}
-                    </a>
-                ))
-            }
-        </div>
-    </div>
-    <div class="bg-white md:hidden">
-        <div
-            class="text-navy mx-auto flex w-full max-w-6xl flex-wrap gap-4 px-6 py-3 text-xs font-semibold"
-        >
-            {
-                navigation.map(item => (
-                    <a
-                        class="hover:text-primary transition"
-                        href={item.href}
+                        Student portal
+                    </Button>
+                    <Button
+                        href={portalUrl}
+                        variant="primary"
+                        class="w-full justify-center"
+                        target="_blank"
+                        rel="noreferrer"
                     >
-                        {item.label}
-                    </a>
-                ))
-            }
-        </div>
+                        Enrol for Term 3
+                    </Button>
+                </div>
+            </div>
+        </details>
     </div>
 </header>

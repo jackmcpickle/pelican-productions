@@ -1,0 +1,27 @@
+---
+interface Props {
+    items: string[];
+}
+
+const { items } = Astro.props;
+const doubled = [...items, ...items];
+---
+
+<div
+    class="border-ink-dotted mt-12 overflow-hidden border-t border-b py-4 md:mt-16"
+    aria-hidden="true"
+>
+    <div class="animate-marquee motion-reduce:transform-none inline-flex">
+        {
+            doubled.map(item => (
+                <span class="font-display inline-flex items-center gap-6 pr-6 text-[32px] leading-none whitespace-nowrap">
+                    {item}
+                    <span
+                        class="bg-flame inline-block h-2.5 w-2.5 shrink-0 rounded-[800px]"
+                        aria-hidden="true"
+                    />
+                </span>
+            ))
+        }
+    </div>
+</div>

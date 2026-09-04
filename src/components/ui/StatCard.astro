@@ -1,0 +1,32 @@
+---
+import { cn } from '@/lib/cn';
+import Halftone from '@/components/ui/Halftone.astro';
+
+interface Props {
+    label: string;
+    value: string;
+    variant?: 'flame' | 'violet';
+    class?: string | undefined;
+}
+
+const { label, value, variant = 'flame', class: className } = Astro.props;
+
+const variants = {
+    flame: 'bg-flame text-white',
+    violet: 'bg-violet text-white',
+};
+---
+
+<article
+    class={cn(
+        'relative flex flex-col gap-3 overflow-hidden rounded-[40px] p-10',
+        variants[variant],
+        className,
+    )}
+>
+    {variant === 'violet' && <Halftone />}
+    <span class="relative text-sm">{label}</span>
+    <span class="font-display relative text-[clamp(2rem,6vw,80px)] leading-[1.1]">
+        {value}
+    </span>
+</article>

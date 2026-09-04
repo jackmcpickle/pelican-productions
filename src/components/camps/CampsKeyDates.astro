@@ -1,0 +1,43 @@
+---
+import Card from '@/components/ui/Card.astro';
+import Container from '@/components/ui/Container.astro';
+import DateRow from '@/components/ui/DateRow.astro';
+import Heading from '@/components/ui/Heading.astro';
+import { campDates } from '@/data/camps';
+---
+
+<section class="mt-16 md:mt-20">
+    <Container>
+        <div
+            class="grid grid-cols-1 items-start gap-8 lg:grid-cols-[1fr_2fr] lg:gap-8"
+        >
+            <div class="flex flex-col gap-4">
+                <Heading as="h2" size="display">
+                    Key<br />dates
+                </Heading>
+                <p class="text-body m-0">
+                    You do not need to audition to participate — auditions are
+                    only for those chasing featured roles.
+                </p>
+            </div>
+            <Card variant="cream" class="flex flex-col">
+                {
+                    campDates.map((date, index) => (
+                        <DateRow
+                            what={date.when}
+                            when={date.what}
+                            class={[
+                                'grid grid-cols-1 gap-6 border-ink-dotted py-4 sm:grid-cols-[220px_1fr] sm:items-baseline [&>span:last-child]:text-base [&>span:last-child]:leading-[1.55]',
+                                index === 0
+                                    ? 'border-t-0 pt-0'
+                                    : 'border-t-[1.5px]',
+                                index < campDates.length - 1 &&
+                                    'border-b-[1.5px]',
+                            ].filter(Boolean).join(' ')}
+                        />
+                    ))
+                }
+            </Card>
+        </div>
+    </Container>
+</section>

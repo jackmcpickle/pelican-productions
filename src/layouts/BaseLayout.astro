@@ -2,42 +2,62 @@
 import '@/styles/global.css';
 import SiteHeader from '@/components/layout/SiteHeader.astro';
 import SiteFooter from '@/components/layout/SiteFooter.astro';
+import type { NavId } from '@/data/site';
+import { siteInfo } from '@/data/site';
 
 interface Props {
     title: string;
     description?: string;
+    active?: NavId | '';
 }
 
-const { title, description } = Astro.props;
+const { title, description, active = '' } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, siteInfo.url).href;
+const fullTitle = title.includes(siteInfo.name)
+    ? title
+    : `${title} | ${siteInfo.name}`;
 ---
 
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1"
-        />
-        <title>{title}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{fullTitle}</title>
         {
             description && (
-                <meta
-                    name="description"
-                    content={description}
-                />
+                <meta name="description" content={description} />
             )
         }
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={fullTitle} />
+        {
+            description && (
+                <meta property="og:description" content={description} />
+            )
+        }
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:site_name" content={siteInfo.name} />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            rel="icon"
-            href="/favicon.ico"
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@500&display=swap"
+            rel="stylesheet"
         />
     </head>
-    <body class="bg-slate-50 text-slate-900 antialiased">
-        <SiteHeader />
-        <main class="min-h-screen">
-            <slot />
-        </main>
-        <SiteFooter />
+    <body class="bg-paper text-ink font-sans antialiased">
+        <div class="flex min-h-screen flex-col px-4 pt-5 sm:px-8">
+            <div
+                class="mx-auto flex w-full max-w-[1280px] flex-1 flex-col"
+            >
+                <SiteHeader active={active} />
+                <main class="flex-1">
+                    <slot />
+                </main>
+                <SiteFooter />
+            </div>
+        </div>
     </body>
 </html>

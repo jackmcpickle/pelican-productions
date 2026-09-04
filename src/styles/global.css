@@ -1,14 +1,124 @@
+/*
+ * DESIGN BRIEF — Pelican Productions
+ * Youth theatre brand on warm paper (#e2e2df). Display type: Bebas Neue.
+ * Body: DM Sans 500. Accent palette: flame orange (#fc5000), sun yellow (#f5f28e),
+ * violet (#524ae9) on cream cards (#f7f6f2) and ink (#070607). Large rounded cards
+ * (40px), pill chips and CTAs, dotted dividers, halftone overlays on violet panels.
+ */
+
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
 @theme {
-    --color-primary: #008080;
-    --color-secondary: #f0425d;
-    --color-teritary: #d4af37;
-    --color-navy: #1a1a2e;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+
+    --color-paper: #e2e2df;
+    --color-ink: #070607;
+    --color-cream: #f7f6f2;
+    --color-flame: #fc5000;
+    --color-sun: #f5f28e;
+    --color-violet: #524ae9;
+    --color-white: #ffffff;
+
+    --radius-card: 40px;
+    --radius-pill: 800px;
+
+    --text-display-hero: 189px;
+    --text-display-xl: 160px;
+    --text-display-lg: 96px;
+    --text-display-md: 80px;
+    --text-display-sm: 64px;
+    --text-display-xs: 48px;
+    --text-display-2xs: 40px;
+    --text-display-3xs: 32px;
+
+    --leading-display: 0.94;
+    --leading-display-relaxed: 1.1;
+    --leading-body: 1.55;
+
+    --tracking-display: 0.02em;
+
+    --animate-marquee: marquee 40s linear infinite;
 }
 
-img {
-    @apply max-w-full;
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@layer base {
+    html {
+        @apply scroll-smooth;
+    }
+
+    body {
+        @apply bg-paper text-ink font-sans antialiased;
+        font-weight: 500;
+    }
+
+    a {
+        @apply text-ink no-underline transition-colors;
+    }
+
+    a:not([data-button]):hover {
+        @apply text-flame;
+    }
+
+    img {
+        @apply block max-w-full;
+    }
+}
+
+@layer utilities {
+    .font-display {
+        font-family: var(--font-display);
+        font-weight: 400;
+        letter-spacing: var(--tracking-display);
+    }
+
+    .text-body {
+        @apply text-base leading-[1.55];
+    }
+
+    .text-body-lg {
+        @apply text-lg leading-[1.55];
+    }
+
+    .border-ink {
+        border-color: var(--color-ink);
+    }
+
+    .border-ink-dotted {
+        border-color: var(--color-ink);
+        border-style: dotted;
+    }
+
+    .border-white-dotted {
+        border-color: var(--color-white);
+        border-style: dotted;
+    }
+
+    .focus-ring {
+        @apply outline-none focus-visible:ring-2 focus-visible:ring-flame focus-visible:ring-offset-2 focus-visible:ring-offset-paper;
+    }
+
+    .focus-ring-dark {
+        @apply outline-none focus-visible:ring-2 focus-visible:ring-flame focus-visible:ring-offset-2 focus-visible:ring-offset-ink;
+    }
+
+    .animate-marquee {
+        animation: var(--animate-marquee);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .animate-marquee {
+            animation: none;
+        }
+    }
 }

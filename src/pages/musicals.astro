@@ -1,0 +1,228 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import Section from '@/components/ui/Section.astro';
+import Heading from '@/components/ui/Heading.astro';
+import MediaFrame from '@/components/ui/MediaFrame.astro';
+import Badge from '@/components/ui/Badge.astro';
+import Card from '@/components/ui/Card.astro';
+import Button from '@/components/ui/Button.astro';
+
+const UPLOADS =
+    'https://www.pelicanproductions.com.au/uploads/3/9/5/6/39560363';
+
+const shows = [
+    { variant: 'flame' as const, year: '2025', name: 'We Will Rock You', note: '' },
+    {
+        variant: 'cream' as const,
+        year: '2025',
+        name: 'Chitty Chitty Bang Bang JR',
+        note: 'Return season',
+    },
+    { variant: 'cream' as const, year: '2024', name: 'Heathers', note: '' },
+    { variant: 'cream' as const, year: '2024', name: 'Newsies', note: '' },
+    { variant: 'cream' as const, year: '2023', name: 'Legally Blonde', note: '' },
+    { variant: 'cream' as const, year: '2023', name: 'Frozen JR', note: '' },
+    {
+        variant: 'cream' as const,
+        year: '2021',
+        name: 'Chicago',
+        note: 'High School Edition',
+    },
+    { variant: 'cream' as const, year: '2021', name: 'School of Rock', note: '' },
+    { variant: 'violet' as const, year: '2020', name: 'In the Heights', note: '' },
+    {
+        variant: 'cream' as const,
+        year: '2019',
+        name: "Disney's The Little Mermaid JR",
+        note: '',
+    },
+    { variant: 'cream' as const, year: '2018', name: 'Annie JR', note: '' },
+    {
+        variant: 'cream' as const,
+        year: '2018',
+        name: 'Bring It On',
+        note: 'Return season',
+    },
+    {
+        variant: 'cream' as const,
+        year: '2017',
+        name: 'Bring It On — The Musical',
+        note: 'SA premiere',
+    },
+    {
+        variant: 'cream' as const,
+        year: '2017',
+        name: 'Seussical JR',
+        note: 'SA premiere',
+    },
+    {
+        variant: 'flame' as const,
+        year: '2015',
+        name: 'Chitty Chitty Bang Bang',
+        note: 'Australian non-professional premiere',
+    },
+    {
+        variant: 'cream' as const,
+        year: '2014',
+        name: "Disney's The Little Mermaid JR",
+        note: '',
+    },
+    {
+        variant: 'cream' as const,
+        year: '2013',
+        name: 'Grease',
+        note: 'The first Pelican musical',
+    },
+];
+
+const credits = [
+    'SIX the Musical (West End)',
+    'Mean Girls (West End)',
+    'Chicago (USA National & International Tour)',
+    'Sunset Boulevard (Opera Australia, GWB)',
+    'West Side Story (Opera Australia)',
+    'Cinderella (Opera Australia)',
+    'Jagged Little Pill',
+    'Tina — The Tina Turner Musical',
+    'Back to the Future',
+    'Jesus Christ Superstar',
+    'Pretty Woman: The Musical',
+    '9 to 5 the Musical',
+    'Priscilla Queen of the Desert',
+    'Mamma Mia',
+    'The Sound of Music',
+    'Chitty Chitty Bang Bang (TML)',
+    'Girl Asleep (Windmill)',
+    'Anne of Green Gables',
+];
+---
+
+<BaseLayout
+    title="Musicals | Pelican Productions"
+    description="Award-nominated, critic-approved, audience-adored musical theatre from Pelican Productions — from Grease in 2013 to We Will Rock You."
+    active="musicals"
+>
+    <section class="mt-12 md:mt-16">
+        <Container>
+            <div
+                class="grid grid-cols-1 items-end gap-8 md:grid-cols-2 md:gap-8"
+            >
+                <Heading as="h1" size="hero">
+                    The<br /><span class="text-flame">shows</span>
+                </Heading>
+                <p class="text-body-lg m-0 mb-6 max-w-[480px]">
+                    Award-nominated, critic-approved, audience-adored. Since 2013
+                    Pelican has staged the Australian non-professional premiere of
+                    Chitty Chitty Bang Bang and South Australian premieres of Bring
+                    It On and Seussical — and hasn't slowed down since.
+                </p>
+            </div>
+        </Container>
+    </section>
+
+    <Section class="mt-16 md:mt-20">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-[2fr_1fr]">
+            <MediaFrame
+                src={`${UPLOADS}/ith-5_orig.jpg`}
+                alt="In the Heights"
+                class="min-h-[320px] md:min-h-[520px]"
+            >
+                <Badge slot="badges" tone="sun">2020</Badge>
+                <Badge slot="badges" tone="cream">In the Heights</Badge>
+            </MediaFrame>
+            <MediaFrame
+                src={`${UPLOADS}/5963801.jpg`}
+                alt="On stage"
+                class="min-h-[320px] md:min-h-[520px]"
+            >
+                <Badge slot="badges" tone="cream">On stage</Badge>
+            </MediaFrame>
+        </div>
+    </Section>
+
+    <Section class="mt-20 md:mt-20">
+        <div class="flex flex-col gap-8">
+            <Heading size="display">Every production</Heading>
+            <div
+                class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
+            >
+                {
+                    shows.map((show) => (
+                        <Card
+                            variant={show.variant}
+                            padding={false}
+                            class="flex min-h-[200px] flex-col justify-between gap-4 p-8"
+                        >
+                            <span class="text-xs font-normal">{show.year}</span>
+                            <div class="flex flex-col gap-2">
+                                <Heading
+                                    as="h3"
+                                    size="card"
+                                    class="!text-[40px] tracking-[0.02em]"
+                                >
+                                    {show.name}
+                                </Heading>
+                                {show.note && (
+                                    <span class="text-sm leading-snug">
+                                        {show.note}
+                                    </span>
+                                )}
+                            </div>
+                        </Card>
+                    ))
+                }
+            </div>
+        </div>
+    </Section>
+
+    <Section class="mt-20 md:mt-20">
+        <div
+            class="grid grid-cols-1 items-start gap-12 md:grid-cols-2 md:gap-16"
+        >
+            <div class="flex flex-col gap-6">
+                <Heading size="display">
+                    From The Nest to the <span class="text-flame">West End</span>
+                </Heading>
+                <p class="text-body m-0">
+                    Pelican has prepared and represented talent for professional
+                    musical theatre and film for years. Pelican performers and
+                    alumni have been cast in:
+                </p>
+            </div>
+            <Card variant="cream" class="flex flex-wrap gap-2 !p-10">
+                {
+                    credits.map((credit) => (
+                        <span class="rounded-[800px] bg-paper px-3.5 py-2 text-sm">
+                            {credit}
+                        </span>
+                    ))
+                }
+            </Card>
+        </div>
+    </Section>
+
+    <Section class="mt-20 md:mt-20">
+        <Card
+            variant="flame"
+            class="flex flex-wrap items-center justify-between gap-8 !p-10"
+        >
+            <div class="flex max-w-xl flex-col gap-3">
+                <Heading
+                    as="h2"
+                    size="small"
+                    class="!text-[clamp(2rem,5vw,64px)] leading-none tracking-[0.02em]"
+                >
+                    Set & costume hire
+                </Heading>
+                <p class="text-body m-0 max-w-[560px]">
+                    Staging your own show? Sets and costumes from past Pelican
+                    productions are available for hire.
+                </p>
+            </div>
+            <Button href="/set-and-costume-hire" variant="inverse">
+                Enquire about hire
+            </Button>
+        </Card>
+    </Section>
+</BaseLayout>

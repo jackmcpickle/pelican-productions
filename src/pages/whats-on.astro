@@ -1,0 +1,16 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import WhatsOnAnnouncements from '@/components/whats-on/WhatsOnAnnouncements.astro';
+import WhatsOnHero from '@/components/whats-on/WhatsOnHero.astro';
+import WhatsOnKeyDates from '@/components/whats-on/WhatsOnKeyDates.astro';
+---
+
+<BaseLayout
+    title="What's on | Pelican Productions"
+    description="Bookings, auditions, info nights and big announcements from Pelican Productions."
+    active="whats-on"
+>
+    <WhatsOnHero />
+    <WhatsOnAnnouncements />
+    <WhatsOnKeyDates />
+</BaseLayout>

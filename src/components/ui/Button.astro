@@ -1,18 +1,66 @@
 ---
+import { cn } from '@/lib/cn';
+
 interface Props {
-  href: string;
-  variant?: 'primary' | 'secondary';
+    href?: string;
+    type?: 'button' | 'submit';
+    variant?: 'primary' | 'secondary' | 'ghost' | 'inverse' | 'outline-light';
+    size?: 'md' | 'lg';
+    class?: string;
+    target?: string | undefined;
+    rel?: string | undefined;
+    'aria-label'?: string;
+    disabled?: boolean;
 }
 
-const { href, variant = 'primary' } = Astro.props;
-const base =
-  'inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400';
-const styles =
-  variant === 'secondary'
-    ? 'border border-white/50 text-white hover:border-white hover:text-white'
-    : 'bg-orange-500 text-white hover:bg-orange-400';
+const {
+    href,
+    type = 'button',
+    variant = 'primary',
+    size = 'md',
+    class: className,
+    target,
+    rel,
+    'aria-label': ariaLabel,
+    disabled,
+} = Astro.props;
+
+const base = cn(
+    'inline-flex shrink-0 items-center justify-center whitespace-nowrap font-sans font-medium transition-colors focus-ring',
+    size === 'lg' ? 'px-6 py-3 text-base' : 'px-4 py-3 text-base',
+);
+
+const variants: Record<NonNullable<Props['variant']>, string> = {
+    primary: cn(
+        'rounded-[800px] bg-flame text-ink hover:bg-ink hover:text-white',
+        size === 'lg' && 'px-6',
+    ),
+    secondary: cn(
+        'rounded-[40px] border-[1.5px] border-ink bg-transparent text-ink hover:bg-cream',
+    ),
+    ghost: 'rounded-[800px] bg-transparent text-ink hover:bg-cream',
+    inverse: 'rounded-[800px] bg-ink text-white hover:bg-flame hover:text-ink',
+    'outline-light':
+        'rounded-[40px] border-[1.5px] border-white bg-transparent text-white hover:bg-white hover:text-ink',
+};
+
+const classes = cn(base, variants[variant], className);
+
+const shared = {
+    class: classes,
+    'aria-label': ariaLabel,
+    'data-button': true,
+};
 ---
 
-<a class={`${base} ${styles}`} href={href}>
-  <slot />
-</a>
+{
+    href ? (
+        <a href={href} target={target} rel={rel} {...shared}>
+            <slot />
+        </a>
+    ) : (
+        <button type={type} disabled={disabled} {...shared}>
+            <slot />
+        </button>
+    )
+}

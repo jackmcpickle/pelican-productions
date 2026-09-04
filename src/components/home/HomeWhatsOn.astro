@@ -1,0 +1,52 @@
+---
+import Badge from '@/components/ui/Badge.astro';
+import Button from '@/components/ui/Button.astro';
+import Card from '@/components/ui/Card.astro';
+import Container from '@/components/ui/Container.astro';
+import Heading from '@/components/ui/Heading.astro';
+import { newsItems } from '@/data/home';
+---
+
+<section id="whats-on" class="mt-16 md:mt-20">
+    <Container>
+        <div class="flex flex-col gap-8">
+            <div
+                class="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end"
+            >
+                <Heading as="h2" size="section">What's on</Heading>
+                <Button href="/whats-on" variant="secondary"
+                    >All announcements</Button
+                >
+            </div>
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+                {
+                    newsItems.map(item => (
+                        <Card
+                            variant="cream"
+                            class="flex min-h-[340px] flex-col gap-5"
+                        >
+                            <div class="flex items-center justify-between gap-2">
+                                <Badge class="text-xs">{item.tag}</Badge>
+                                <span class="text-xs font-normal">
+                                    {item.date}
+                                </span>
+                            </div>
+                            <Heading as="h3" size="card">
+                                {item.title}
+                            </Heading>
+                            <p class="text-body m-0 flex-1">{item.body}</p>
+                            <Button
+                                href={item.href}
+                                class="self-start"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                {item.cta}
+                            </Button>
+                        </Card>
+                    ))
+                }
+            </div>
+        </div>
+    </Container>
+</section>
