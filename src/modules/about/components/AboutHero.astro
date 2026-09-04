@@ -1,0 +1,35 @@
+---
+import Badge from '@/components/ui/Badge.astro';
+import Container from '@/components/ui/Container.astro';
+import Halftone from '@/components/ui/Halftone.astro';
+import Heading from '@/components/ui/Heading.astro';
+import MediaFrame from '@/components/ui/MediaFrame.astro';
+---
+
+<section class="mt-12 md:mt-16">
+    <Container>
+        <div
+            class="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-[1.2fr_1fr]"
+        >
+            <Heading as="h1" size="hero" class="self-center">
+                Theatre should be fun.{' '}
+                <span class="text-flame">And it should change you.</span>
+            </Heading>
+            <MediaFrame class="relative min-h-[360px] md:min-h-[480px]">
+                <div
+                    slot="media"
+                    class="absolute inset-0 bg-gradient-to-br from-violet from-45% to-flame"
+                >
+                    <Halftone />
+                </div>
+                <img
+                    src="/images/logo.jpg"
+                    alt="Pelican Productions logo"
+                    class="absolute top-1/2 left-1/2 h-[200px] w-[200px] -translate-x-1/2 -translate-y-1/2 rounded-full object-cover md:h-[280px] md:w-[280px]"
+                    loading="eager"
+                />
+                <Badge slot="badges">Founded 2004 · Adelaide</Badge>
+            </MediaFrame>
+        </div>
+    </Container>
+</section>

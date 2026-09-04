@@ -1,0 +1,29 @@
+---
+import Badge from '@/components/ui/Badge.astro';
+import Heading from '@/components/ui/Heading.astro';
+import MediaFrame from '@/components/ui/MediaFrame.astro';
+import Section from '@/components/ui/Section.astro';
+import { nestHeroImage } from '@/data/nest';
+---
+
+<Section class="mt-12 md:mt-16">
+    <MediaFrame
+        src={nestHeroImage}
+        alt="The Nest studio"
+        class="h-[min(520px,70vh)] bg-violet"
+    >
+        <div
+            class="absolute inset-x-6 bottom-6 flex flex-col gap-6 sm:inset-x-10 sm:bottom-10 md:flex-row md:items-end md:justify-between"
+        >
+            <div class="flex flex-col gap-4">
+                <Badge>Weekly classes · Term 3, 2026 enrolling</Badge>
+                <Heading as="h1" size="hero" class="text-white">
+                    The Nest
+                </Heading>
+            </div>
+            <p class="m-0 text-right text-base leading-snug text-white">
+                57A Price Avenue<br />Mitcham SA
+            </p>
+        </div>
+    </MediaFrame>
+</Section>

@@ -4,10 +4,13 @@ import { cn } from '@/lib/cn';
 interface Props {
     when: string;
     what: string;
+    emphasize?: 'when' | 'what';
     class?: string | undefined;
 }
 
-const { when, what, class: className } = Astro.props;
+const { when, what, emphasize = 'what', class: className } = Astro.props;
+const title = emphasize === 'when' ? when : what;
+const detail = emphasize === 'when' ? what : when;
 ---
 
 <div
@@ -17,7 +20,7 @@ const { when, what, class: className } = Astro.props;
     )}
 >
     <span class="font-display text-[clamp(1.5rem,3vw,40px)] leading-none">
-        {what}
+        {title}
     </span>
-    <span class="text-sm leading-snug">{when}</span>
+    <span class="text-sm leading-snug">{detail}</span>
 </div>

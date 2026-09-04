@@ -22,6 +22,11 @@ export const navigation: { id: NavId; label: string; href: string }[] = [
 export const portalUrl =
     'https://dancestudio-pro.com/online/pelicanproductions';
 
+export const facebookUrl =
+    'https://www.facebook.com/PelicanProductionsSA/?ref=bookmarks';
+
+export const campsBookingUrl = 'https://www.trybooking.com/DNSQG';
+
 export const footerMenu = [
     { label: "What's on", href: '/whats-on' },
     { label: 'The Nest', href: '/the-nest' },
@@ -31,7 +36,7 @@ export const footerMenu = [
 ];
 
 export const quickLinks = [
-    { label: 'Facebook', href: 'https://www.facebook.com/PelicanProductionsSA/?ref=bookmarks' },
+    { label: 'Facebook', href: facebookUrl },
     { label: 'Privacy', href: '/pelican-productions-privacy-policy' },
 ];
 
@@ -42,6 +47,7 @@ export const socialLinks = [
     },
     {
         label: 'Facebook',
-        href: 'https://www.facebook.com/PelicanProductionsSA/?ref=bookmarks',
+        href: facebookUrl,
     },
 ];
+

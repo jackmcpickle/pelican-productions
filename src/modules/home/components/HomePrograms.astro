@@ -1,0 +1,74 @@
+---
+import Badge from '@/components/ui/Badge.astro';
+import Button from '@/components/ui/Button.astro';
+import Card from '@/components/ui/Card.astro';
+import Heading from '@/components/ui/Heading.astro';
+import MediaFrame from '@/components/ui/MediaFrame.astro';
+import Section from '@/components/ui/Section.astro';
+import { homeImages, nestPrograms } from '@/data/home';
+import { portalUrl } from '@/data/site';
+---
+
+<Section id="nest">
+    <div class="flex flex-col gap-8">
+        <MediaFrame
+            src={homeImages.nestBanner}
+            alt="The Nest studio"
+            class="h-[280px] sm:h-[360px]"
+        >
+            <div
+                class="absolute right-8 bottom-8 left-8 flex flex-col items-start gap-3"
+            >
+                <Badge>Weekly classes · Term 3, 2026</Badge>
+                <Heading as="h2" size="display" class="text-white">
+                    Programs at The Nest
+                </Heading>
+            </div>
+        </MediaFrame>
+
+        <p class="text-body-lg m-0 max-w-[760px]">
+            Whether you're building towards a professional career or just want
+            to have a ridiculous amount of fun with friends, there's a class for
+            you. All held at The Nest, 57A Price Avenue, Mitcham.
+        </p>
+
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {
+                nestPrograms.map((program) => (
+                    <Card
+                        variant="cream"
+                        class="grid grid-cols-1 items-start gap-6 sm:grid-cols-[1fr_auto]"
+                    >
+                        <div class="flex flex-col gap-4">
+                            <Badge class="self-start text-xs">
+                                {program.ages}
+                            </Badge>
+                            <Heading as="h3" size="card">
+                                {program.name}
+                            </Heading>
+                            <p class="m-0 text-sm leading-snug">
+                                {program.when}
+                            </p>
+                            <p class="text-body m-0">{program.blurb}</p>
+                            <Button
+                                href={portalUrl}
+                                variant="secondary"
+                                class="self-start"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Register
+                            </Button>
+                        </div>
+                        <div
+                            class="bg-flame text-ink font-display flex h-24 w-24 shrink-0 items-center justify-center self-start rounded-[800px] text-[40px] leading-none sm:self-auto"
+                            aria-hidden="true"
+                        >
+                            {program.short}
+                        </div>
+                    </Card>
+                ))
+            }
+        </div>
+    </div>
+</Section>

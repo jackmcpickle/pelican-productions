@@ -1,0 +1,25 @@
+---
+import NewsCard from '@/components/blocks/NewsCard.astro';
+import Section from '@/components/ui/Section.astro';
+import { whatsOnNews } from '@/data/whats-on';
+---
+
+<Section>
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        {
+            whatsOnNews.map((item) => (
+                <NewsCard
+                    tag={item.tag}
+                    date={item.date}
+                    title={item.title}
+                    body={item.body}
+                    facts={item.facts}
+                    cta={item.cta}
+                    href={item.href}
+                    ctaVariant={item.ctaVariant}
+                    headingAs="h2"
+                />
+            ))
+        }
+    </div>
+</Section>

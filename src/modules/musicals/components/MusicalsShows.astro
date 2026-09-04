@@ -1,0 +1,39 @@
+---
+import Card from '@/components/ui/Card.astro';
+import Heading from '@/components/ui/Heading.astro';
+import Section from '@/components/ui/Section.astro';
+import { musicalsShows } from '@/data/musicals';
+---
+
+<Section class="mt-20 md:mt-20">
+    <div class="flex flex-col gap-8">
+        <Heading size="display">Every production</Heading>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {
+                musicalsShows.map((show) => (
+                    <Card
+                        variant={show.variant}
+                        padding={false}
+                        class="flex min-h-[200px] flex-col justify-between gap-4 p-8"
+                    >
+                        <span class="text-xs font-normal">{show.year}</span>
+                        <div class="flex flex-col gap-2">
+                            <Heading
+                                as="h3"
+                                size="card"
+                                class="!text-[40px] tracking-[0.02em]"
+                            >
+                                {show.name}
+                            </Heading>
+                            {show.note && (
+                                <span class="text-sm leading-snug">
+                                    {show.note}
+                                </span>
+                            )}
+                        </div>
+                    </Card>
+                ))
+            }
+        </div>
+    </div>
+</Section>

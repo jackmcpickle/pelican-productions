@@ -1,3 +1,5 @@
+import type { NewsItem } from './whats-on';
+
 export const homeMeta = {
     title: 'Pelican Productions',
     description:
@@ -25,7 +27,7 @@ export const tickerItems = [
     'Term 3 classes at The Nest now enrolling',
 ];
 
-export const newsItems = [
+export const newsItems: NewsItem[] = [
     {
         tag: 'Bookings open',
         date: 'Jan 2027',
@@ -118,8 +120,6 @@ export const shows = [
     { year: '2014', name: 'The Little Mermaid JR' },
     { year: '2013', name: 'Grease' },
 ];
-
-export const campBookingUrl = 'https://www.trybooking.com/DNSQG';
 
 export const sportsVoucherFormUrl =
     'https://www.sportsvouchers.sa.gov.au/2025-Sports-Voucher-Registration-Form.pdf';

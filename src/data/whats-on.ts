@@ -1,15 +1,21 @@
 export type NewsCtaVariant = 'primary' | 'secondary';
 
-export interface WhatsOnNewsItem {
+export interface NewsItem {
     tag: string;
     date: string;
     title: string;
     body: string;
-    facts: string[];
+    facts?: string[];
     cta: string;
     href: string;
-    ctaVariant: NewsCtaVariant;
+    ctaVariant?: NewsCtaVariant;
 }
+
+export type WhatsOnNewsItem = NewsItem & {
+    facts: string[];
+    ctaVariant: NewsCtaVariant;
+};
+
 
 export interface WhatsOnDateItem {
     when: string;

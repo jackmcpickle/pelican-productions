@@ -1,4 +1,4 @@
-export const campsBookingUrl = 'https://www.trybooking.com/DNSQG';
+export { campsBookingUrl } from './site';
 
 export const campsUploadsBase =
     'https://www.pelicanproductions.com.au/uploads/3/9/5/6/39560363';
