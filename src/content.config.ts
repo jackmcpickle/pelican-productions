@@ -102,6 +102,26 @@ const productions = defineCollection({
         description: z.string().optional(),
         order: z.number(),
         hasPage: z.boolean().optional(),
+        pageSlug: z.string().optional(),
+        venue: z.string().optional(),
+        awards: z.array(z.string()).optional(),
+        credits: z.array(z.string()).optional(),
+        reviews: z
+            .array(
+                z.object({
+                    quote: z.string(),
+                    attribution: z.string(),
+                }),
+            )
+            .optional(),
+        gallery: z
+            .array(
+                z.object({
+                    src: z.string(),
+                    alt: z.string(),
+                }),
+            )
+            .optional(),
     }),
 });
 

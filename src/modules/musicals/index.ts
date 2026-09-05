@@ -3,3 +3,7 @@ export { default as MusicalsCta } from './components/MusicalsCta.astro';
 export { default as MusicalsGallery } from './components/MusicalsGallery.astro';
 export { default as MusicalsHero } from './components/MusicalsHero.astro';
 export { default as MusicalsShows } from './components/MusicalsShows.astro';
+export { default as ProductionCredits } from './components/ProductionCredits.astro';
+export { default as ProductionGallery } from './components/ProductionGallery.astro';
+export { default as ProductionHero } from './components/ProductionHero.astro';
+export { default as ProductionReviews } from './components/ProductionReviews.astro';

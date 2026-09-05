@@ -70,6 +70,14 @@
         @apply text-flame;
     }
 
+    a[data-quiet] {
+        @apply text-inherit no-underline;
+    }
+
+    a[data-quiet]:hover {
+        @apply text-inherit;
+    }
+
     img {
         @apply block max-w-full;
     }
@@ -119,6 +127,10 @@
     @media (prefers-reduced-motion: reduce) {
         .animate-marquee {
             animation: none;
+        }
+
+        a[data-quiet] {
+            transform: none;
         }
     }
 }

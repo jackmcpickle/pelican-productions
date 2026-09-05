@@ -6,7 +6,10 @@ import Heading from '@/components/ui/Heading.astro';
 import MediaFrame from '@/components/ui/MediaFrame.astro';
 import Section from '@/components/ui/Section.astro';
 import { homeImages } from '@/data/home';
-import { getFeaturedProductions } from '@/lib/productions';
+import {
+    getFeaturedProductions,
+    getProductionHref,
+} from '@/lib/productions';
 
 const shows = await getFeaturedProductions();
 ---
@@ -22,16 +25,22 @@ const shows = await getFeaturedProductions();
         </div>
 
         <div class="grid grid-cols-1 gap-4 lg:grid-cols-[2fr_1fr]">
-            <MediaFrame
-                src={homeImages.inTheHeights}
-                alt="In the Heights, 2019"
-                class="min-h-[280px] lg:min-h-[440px]"
+            <a
+                href="/musicals/in-the-heights"
+                data-quiet
+                class="focus-ring block rounded-[40px]"
             >
-                <div slot="badges" class="flex gap-2">
-                    <Badge>2020</Badge>
-                    <Badge tone="cream">In the Heights</Badge>
-                </div>
-            </MediaFrame>
+                <MediaFrame
+                    src={homeImages.inTheHeights}
+                    alt="In the Heights, 2019"
+                    class="min-h-[280px] lg:min-h-[440px]"
+                >
+                    <div slot="badges" class="flex gap-2">
+                        <Badge>2019</Badge>
+                        <Badge tone="cream">In the Heights</Badge>
+                    </div>
+                </MediaFrame>
+            </a>
             <MediaFrame
                 src={homeImages.musicalProduction}
                 alt="Pelican musical production"
@@ -45,20 +54,32 @@ const shows = await getFeaturedProductions();
 
         <Card variant="cream" padding={false} class="flex flex-wrap items-center">
             {
-                shows.map((show, index) => (
-                    <div
-                        class:list={[
-                            'flex items-baseline gap-2.5 px-6 py-2',
-                            index < shows.length - 1 &&
-                                'border-ink-dotted border-r-[1.5px]',
-                        ]}
-                    >
-                        <span class="text-xs font-normal">{show.data.year}</span>
-                        <span class="font-display text-[32px] leading-none">
-                            {show.data.name}
-                        </span>
-                    </div>
-                ))
+                shows.map((show, index) => {
+                    const href = getProductionHref(show);
+                    const classes = [
+                        'flex items-baseline gap-2.5 px-6 py-2',
+                        index < shows.length - 1 &&
+                            'border-ink-dotted border-r-[1.5px]',
+                    ];
+                    const label = (
+                        <>
+                            <span class="text-xs font-normal">
+                                {show.data.year}
+                            </span>
+                            <span class="font-display text-[32px] leading-none">
+                                {show.data.name}
+                            </span>
+                        </>
+                    );
+
+                    return href ? (
+                        <a href={href} data-quiet class:list={classes}>
+                            {label}
+                        </a>
+                    ) : (
+                        <div class:list={classes}>{label}</div>
+                    );
+                })
             }
         </Card>
     </div>

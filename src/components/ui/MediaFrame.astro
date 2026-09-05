@@ -5,9 +5,10 @@ interface Props {
     src?: string;
     alt?: string;
     class?: string;
+    loading?: 'eager' | 'lazy';
 }
 
-const { src, alt = '', class: className } = Astro.props;
+const { src, alt = '', class: className, loading = 'eager' } = Astro.props;
 ---
 
 <div class={cn('relative overflow-hidden rounded-[40px]', className)}>
@@ -17,7 +18,7 @@ const { src, alt = '', class: className } = Astro.props;
                 src={src}
                 alt={alt}
                 class="h-full w-full object-cover"
-                loading="eager"
+                loading={loading}
             />
         ) : (
             <slot name="media" />

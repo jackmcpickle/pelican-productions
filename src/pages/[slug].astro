@@ -12,60 +12,37 @@ import Card from '@/components/ui/Card.astro';
 import Heading from '@/components/ui/Heading.astro';
 import { siteInfo } from '@/data/site';
 import { RESERVED_SLUGS } from '@/lib/pages';
-import { getProductionPages } from '@/lib/productions';
 
 export const prerender = true;
 
 export async function getStaticPaths(): Promise<{ params: { slug: string } }[]> {
     const pages = await getCollection('pages');
-    const productions = await getProductionPages();
-    const pagePaths = pages
+    return pages
         .filter((page: CollectionEntry<'pages'>) => !RESERVED_SLUGS.has(page.id))
         .map((page: CollectionEntry<'pages'>) => ({
             params: { slug: page.id },
         }));
-    const productionPaths = productions.map((production) => ({
-        params: { slug: production.id },
-    }));
-    return [...pagePaths, ...productionPaths];
 }
 
 const slug = Astro.params.slug;
-const production = (await getProductionPages()).find(
-    (entry) => entry.id === slug,
-);
 const pages = await getCollection('pages');
 const page = pages.find(
     (entry: CollectionEntry<'pages'>) => entry.id === slug,
 );
 
-if (!production && !page) {
+if (!page) {
     throw new Error('Page not found');
 }
 
-const rendered = production
-    ? await render(production)
-    : await render(page as CollectionEntry<'pages'>);
-const { Content } = rendered;
-const pageData = page?.data;
+const { Content } = await render(page);
+const pageData = page.data;
 ---
 
-<BaseLayout
-    title={production ? production.data.name : pageData?.title}
-    description={production ? production.data.description : pageData?.description}
->
+<BaseLayout title={pageData.title} description={pageData.description}>
     <PageHero
-        title={
-            production
-                ? production.data.name
-                : (pageData?.hero?.title ?? pageData?.title ?? '')
-        }
-        subtitle={
-            production
-                ? `Pelican Productions, ${production.data.year}`
-                : pageData?.hero?.subtitle
-        }
-        image={production ? production.data.coverImage : pageData?.hero?.image}
+        title={pageData.hero?.title ?? pageData.title}
+        subtitle={pageData.hero?.subtitle}
+        image={pageData.hero?.image}
     />
     <Section>
         <article
@@ -75,35 +52,35 @@ const pageData = page?.data;
         </article>
     </Section>
     {
-        pageData?.gallery && (
+        pageData.gallery && (
             <Section title="Gallery">
                 <GalleryGrid items={pageData.gallery} />
             </Section>
         )
     }
     {
-        pageData?.faqs && (
+        pageData.faqs && (
             <Section title="FAQ">
                 <FaqList items={pageData.faqs} />
             </Section>
         )
     }
     {
-        pageData?.testimonials && (
+        pageData.testimonials && (
             <Section title="Testimonials">
                 <TestimonialsGrid items={pageData.testimonials} />
             </Section>
         )
     }
     {
-        pageData?.team && (
+        pageData.team && (
             <Section title="Team">
                 <TeamGrid groups={pageData.team} />
             </Section>
         )
     }
     {
-        pageData?.contact && (
+        pageData.contact && (
             <Section title="Contact Details">
                 <div class="grid gap-6 md:grid-cols-[1fr_2fr]">
                     <Card variant="cream" class="text-body max-w-none">

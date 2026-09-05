@@ -3,7 +3,28 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 export type ProductionEntry = CollectionEntry<'productions'>;
 
 export function hasProductionPage(entry: ProductionEntry): boolean {
-    return entry.data.hasPage === true || Boolean(entry.body?.trim());
+    if (entry.data.pageSlug) {
+        return false;
+    }
+
+    return (
+        entry.data.hasPage === true ||
+        Boolean(entry.body?.trim()) ||
+        Boolean(entry.data.reviews?.length) ||
+        Boolean(entry.data.gallery?.length)
+    );
+}
+
+export function getProductionHref(entry: ProductionEntry): string | undefined {
+    if (entry.data.pageSlug) {
+        return `/musicals/${entry.data.pageSlug}`;
+    }
+
+    if (hasProductionPage(entry)) {
+        return `/musicals/${entry.id}`;
+    }
+
+    return undefined;
 }
 
 function byOrder(a: ProductionEntry, b: ProductionEntry): number {
@@ -21,4 +42,10 @@ export async function getFeaturedProductions(): Promise<ProductionEntry[]> {
 
 export async function getProductionPages(): Promise<ProductionEntry[]> {
     return (await getProductions()).filter(hasProductionPage);
+}
+
+export async function getProductionBySlug(
+    slug: string,
+): Promise<ProductionEntry | undefined> {
+    return (await getProductionPages()).find((entry) => entry.id === slug);
 }

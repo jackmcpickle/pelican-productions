@@ -46,6 +46,7 @@ const fullTitle = title.includes(siteInfo.name)
             href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@500&display=swap"
             rel="stylesheet"
         />
+        <slot name="head" />
     </head>
     <body class="bg-paper text-ink font-sans antialiased">
         <div class="flex min-h-screen flex-col px-4 pt-5 sm:px-8">

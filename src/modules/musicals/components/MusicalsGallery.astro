@@ -7,14 +7,20 @@ import { musicalsImages } from '@/data/musicals';
 
 <Section>
     <div class="grid grid-cols-1 gap-4 md:grid-cols-[2fr_1fr]">
-        <MediaFrame
-            src={musicalsImages.inTheHeights}
-            alt="In the Heights"
-            class="min-h-[320px] md:min-h-[520px]"
+        <a
+            href="/musicals/in-the-heights"
+            data-quiet
+            class="focus-ring block rounded-[40px]"
         >
-            <Badge slot="badges" tone="sun">2020</Badge>
-            <Badge slot="badges" tone="cream">In the Heights</Badge>
-        </MediaFrame>
+            <MediaFrame
+                src={musicalsImages.inTheHeights}
+                alt="In the Heights"
+                class="min-h-[320px] md:min-h-[520px]"
+            >
+                <Badge slot="badges" tone="sun">2019</Badge>
+                <Badge slot="badges" tone="cream">In the Heights</Badge>
+            </MediaFrame>
+        </a>
         <MediaFrame
             src={musicalsImages.onStage}
             alt="On stage"
