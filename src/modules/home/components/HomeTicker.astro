@@ -1,7 +1,9 @@
 ---
 import Container from '@/components/ui/Container.astro';
 import Ticker from '@/components/ui/Ticker.astro';
-import { tickerItems } from '@/data/home';
+import { getTickerItems } from '@/lib/news';
+
+const tickerItems = await getTickerItems();
 ---
 
 <Container>

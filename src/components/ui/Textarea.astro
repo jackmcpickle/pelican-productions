@@ -36,8 +36,9 @@ const variants = {
     required={required}
     rows={rows}
     class={cn(
-        'w-full rounded-[40px] px-8 py-5 text-base font-medium outline-none transition-colors focus-ring',
+        'min-w-0 w-full rounded-[40px] px-6 py-4 text-base font-medium outline-none transition-colors focus-ring sm:px-8 sm:py-5',
         fieldSizing && 'field-sizing-content min-h-[120px]',
         variants[variant],
         className,
-    )}></textarea>
+    )}
+></textarea>

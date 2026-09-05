@@ -28,6 +28,10 @@ export type PastCampPhoto = {
     alt: string;
 };
 
+export function campFact(camp: Camp, label: string): string {
+    return camp.facts.find((fact) => fact.label === label)?.value ?? '';
+}
+
 export const camps: Camp[] = [
     {
         id: 'mtc',

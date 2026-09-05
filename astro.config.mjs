@@ -33,6 +33,8 @@ export default defineConfig({
         '/chitty-chitty-bang-bang.html': '/chitty-chitty-bang-bang',
         '/disneys-the-little-mermaid-jr.html': '/disneys-the-little-mermaid-jr',
         '/bring-it-on---the-musical.html': '/bring-it-on-the-musical',
+        '/shows': '/musicals',
+        '/shows.html': '/musicals',
     },
     vite: {
         plugins: [tailwindcss()],

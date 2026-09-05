@@ -5,7 +5,10 @@ import Card from '@/components/ui/Card.astro';
 import Heading from '@/components/ui/Heading.astro';
 import MediaFrame from '@/components/ui/MediaFrame.astro';
 import Section from '@/components/ui/Section.astro';
-import { homeImages, shows } from '@/data/home';
+import { homeImages } from '@/data/home';
+import { getFeaturedProductions } from '@/lib/productions';
+
+const shows = await getFeaturedProductions();
 ---
 
 <Section id="musicals">
@@ -50,9 +53,9 @@ import { homeImages, shows } from '@/data/home';
                                 'border-ink-dotted border-r-[1.5px]',
                         ]}
                     >
-                        <span class="text-xs font-normal">{show.year}</span>
+                        <span class="text-xs font-normal">{show.data.year}</span>
                         <span class="font-display text-[32px] leading-none">
-                            {show.name}
+                            {show.data.name}
                         </span>
                     </div>
                 ))

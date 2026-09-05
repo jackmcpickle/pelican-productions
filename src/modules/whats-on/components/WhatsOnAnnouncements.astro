@@ -1,7 +1,9 @@
 ---
 import NewsCard from '@/components/blocks/NewsCard.astro';
 import Section from '@/components/ui/Section.astro';
-import { whatsOnNews } from '@/data/whats-on';
+import { getNews } from '@/lib/news';
+
+const whatsOnNews = await getNews();
 ---
 
 <Section>
@@ -9,14 +11,14 @@ import { whatsOnNews } from '@/data/whats-on';
         {
             whatsOnNews.map((item) => (
                 <NewsCard
-                    tag={item.tag}
-                    date={item.date}
-                    title={item.title}
-                    body={item.body}
-                    facts={item.facts}
-                    cta={item.cta}
-                    href={item.href}
-                    ctaVariant={item.ctaVariant}
+                    tag={item.data.tag}
+                    date={item.data.dateLabel}
+                    title={item.data.title}
+                    body={item.data.body}
+                    facts={item.data.facts}
+                    cta={item.data.cta}
+                    href={item.data.href}
+                    ctaVariant={item.data.ctaVariant}
                     headingAs="h2"
                 />
             ))

@@ -26,7 +26,7 @@ const {
 } = Astro.props;
 
 const base = cn(
-    'inline-flex shrink-0 items-center justify-center whitespace-nowrap font-sans font-medium transition-colors focus-ring',
+    'inline-flex max-w-full items-center justify-center text-center font-sans font-medium transition-colors focus-ring',
     size === 'lg' ? 'px-6 py-3 text-base' : 'px-4 py-3 text-base',
 );
 
@@ -55,11 +55,20 @@ const shared = {
 
 {
     href ? (
-        <a href={href} target={target} rel={rel} {...shared}>
+        <a
+            href={href}
+            target={target}
+            rel={rel}
+            {...shared}
+        >
             <slot />
         </a>
     ) : (
-        <button type={type} disabled={disabled} {...shared}>
+        <button
+            type={type}
+            disabled={disabled}
+            {...shared}
+        >
             <slot />
         </button>
     )

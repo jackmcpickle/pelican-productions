@@ -13,12 +13,19 @@ interface Props {
 const { heading = 'Send us a message', description } = Astro.props;
 ---
 
-<Card variant="cream" class="max-w-none">
+<Card
+    variant="cream"
+    class="max-w-none min-w-0"
+>
     <div class="mb-6 flex flex-col gap-2">
         <h2 class="font-display text-[40px] leading-none">{heading}</h2>
         {description && <p class="text-body m-0">{description}</p>}
     </div>
-    <form class="flex flex-col gap-5" method="post" action="/api/contact">
+    <form
+        class="flex flex-col gap-5"
+        method="post"
+        action="/api/contact"
+    >
         <div class="grid gap-5 md:grid-cols-2">
             <div class="flex flex-col gap-2">
                 <Label for="contact-name">Name</Label>
@@ -64,7 +71,10 @@ const { heading = 'Send us a message', description } = Astro.props;
                 fieldSizing
             />
         </div>
-        <Button type="submit" variant="primary">
+        <Button
+            type="submit"
+            variant="primary"
+        >
             Send message
         </Button>
     </form>

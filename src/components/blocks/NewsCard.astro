@@ -3,7 +3,7 @@ import Badge from '@/components/ui/Badge.astro';
 import Button from '@/components/ui/Button.astro';
 import Card from '@/components/ui/Card.astro';
 import Heading from '@/components/ui/Heading.astro';
-import type { NewsCtaVariant } from '@/data/whats-on';
+import type { NewsCtaVariant } from '@/lib/news';
 import { cn } from '@/lib/cn';
 import { isExternal } from '@/lib/links';
 
@@ -36,19 +36,25 @@ const {
 const external = isExternal(href);
 ---
 
-<Card variant="cream" class={cn('flex flex-col gap-5', className)}>
-    <div class="flex items-center justify-between gap-2">
+<Card
+    variant="cream"
+    class={cn('flex flex-col gap-5', className)}
+>
+    <div class="flex flex-wrap items-center justify-between gap-2">
         <Badge>{tag}</Badge>
         <span class="text-xs font-normal">{date}</span>
     </div>
-    <Heading as={headingAs} size="card">
+    <Heading
+        as={headingAs}
+        size="card"
+    >
         {title}
     </Heading>
     <p class="text-body m-0 flex-1">{body}</p>
     {
         facts && facts.length > 0 && (
             <div class="border-ink-dotted flex flex-col gap-1.5 border-t-[1.5px] pt-4">
-                {facts.map((fact) => (
+                {facts.map(fact => (
                     <span class="text-sm leading-snug">{fact}</span>
                 ))}
             </div>

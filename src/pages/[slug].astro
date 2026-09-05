@@ -6,96 +6,122 @@ import Section from '@/components/ui/Section.astro';
 import GalleryGrid from '@/components/blocks/GalleryGrid.astro';
 import FaqList from '@/components/blocks/FaqList.astro';
 import TestimonialsGrid from '@/components/blocks/TestimonialsGrid.astro';
-import ShowTable from '@/components/blocks/ShowTable.astro';
 import ContactForm from '@/components/blocks/ContactForm.astro';
 import TeamGrid from '@/components/blocks/TeamGrid.astro';
 import Card from '@/components/ui/Card.astro';
 import Heading from '@/components/ui/Heading.astro';
 import { siteInfo } from '@/data/site';
+import { RESERVED_SLUGS } from '@/lib/pages';
+import { getProductionPages } from '@/lib/productions';
 
 export const prerender = true;
 
-const RESERVED_SLUGS = new Set([
-  'musicals',
-  'music-theatre-camp',
-  'about',
-  'about-us',
-  'the-nest',
-  'cert4',
-  'contact',
-  'contact-us',
-]);
-
 export async function getStaticPaths(): Promise<{ params: { slug: string } }[]> {
-  const pages = await getCollection('pages');
-  return pages
-    .filter(
-      (page: CollectionEntry<'pages'>) =>
-        page.id !== 'home' && !RESERVED_SLUGS.has(page.id),
-    )
-    .map((page: CollectionEntry<'pages'>) => ({ params: { slug: page.id } }));
+    const pages = await getCollection('pages');
+    const productions = await getProductionPages();
+    const pagePaths = pages
+        .filter((page: CollectionEntry<'pages'>) => !RESERVED_SLUGS.has(page.id))
+        .map((page: CollectionEntry<'pages'>) => ({
+            params: { slug: page.id },
+        }));
+    const productionPaths = productions.map((production) => ({
+        params: { slug: production.id },
+    }));
+    return [...pagePaths, ...productionPaths];
 }
 
+const slug = Astro.params.slug;
+const production = (await getProductionPages()).find(
+    (entry) => entry.id === slug,
+);
 const pages = await getCollection('pages');
-const page = pages.find((entry: CollectionEntry<'pages'>) => entry.id === Astro.params.slug);
-if (!page) {
-  throw new Error('Page not found');
+const page = pages.find(
+    (entry: CollectionEntry<'pages'>) => entry.id === slug,
+);
+
+if (!production && !page) {
+    throw new Error('Page not found');
 }
-const { data } = page;
-const { Content } = await render(page);
+
+const rendered = production
+    ? await render(production)
+    : await render(page as CollectionEntry<'pages'>);
+const { Content } = rendered;
+const pageData = page?.data;
 ---
 
-<BaseLayout title={data.title} description={data.description}>
-  <PageHero
-    title={data.hero?.title ?? data.title}
-    subtitle={data.hero?.subtitle}
-    image={data.hero?.image}
-  />
-  <Section>
-    <article
-      class="prose max-w-none text-ink prose-headings:font-display prose-headings:font-normal prose-headings:text-ink prose-headings:tracking-[0.02em] prose-p:text-ink/80 prose-a:text-flame prose-a:no-underline hover:prose-a:text-ink prose-strong:text-ink prose-li:text-ink/80"
-    >
-      <Content />
-    </article>
-  </Section>
-  {data.gallery && (
-    <Section title="Gallery">
-      <GalleryGrid items={data.gallery} />
+<BaseLayout
+    title={production ? production.data.name : pageData?.title}
+    description={production ? production.data.description : pageData?.description}
+>
+    <PageHero
+        title={
+            production
+                ? production.data.name
+                : (pageData?.hero?.title ?? pageData?.title ?? '')
+        }
+        subtitle={
+            production
+                ? `Pelican Productions, ${production.data.year}`
+                : pageData?.hero?.subtitle
+        }
+        image={production ? production.data.coverImage : pageData?.hero?.image}
+    />
+    <Section>
+        <article
+            class="prose max-w-none text-ink prose-headings:font-display prose-headings:font-normal prose-headings:text-ink prose-headings:tracking-[0.02em] prose-p:text-ink/80 prose-a:text-flame prose-a:no-underline hover:prose-a:text-ink prose-strong:text-ink prose-li:text-ink/80"
+        >
+            <Content />
+        </article>
     </Section>
-  )}
-  {data.shows && (
-    <Section title="Shows">
-      <ShowTable items={data.shows} />
-    </Section>
-  )}
-  {data.faqs && (
-    <Section title="FAQ">
-      <FaqList items={data.faqs} />
-    </Section>
-  )}
-  {data.testimonials && (
-    <Section title="Testimonials">
-      <TestimonialsGrid items={data.testimonials} />
-    </Section>
-  )}
-  {data.team && (
-    <Section title="Team">
-      <TeamGrid groups={data.team} />
-    </Section>
-  )}
-  {data.contact && (
-    <Section title="Contact Details">
-      <div class="grid gap-6 md:grid-cols-[1fr_2fr]">
-        <Card variant="cream" class="text-body max-w-none">
-          <Heading as="h3" size="small">Get in touch</Heading>
-          <div class="mt-4 flex flex-col gap-2">
-            <p class="m-0">Phone: {siteInfo.phone}</p>
-            <p class="m-0">Email: {siteInfo.email}</p>
-            <p class="m-0 mt-2">{siteInfo.address}</p>
-          </div>
-        </Card>
-        <ContactForm heading={data.contact.heading} description={data.contact.description} />
-      </div>
-    </Section>
-  )}
+    {
+        pageData?.gallery && (
+            <Section title="Gallery">
+                <GalleryGrid items={pageData.gallery} />
+            </Section>
+        )
+    }
+    {
+        pageData?.faqs && (
+            <Section title="FAQ">
+                <FaqList items={pageData.faqs} />
+            </Section>
+        )
+    }
+    {
+        pageData?.testimonials && (
+            <Section title="Testimonials">
+                <TestimonialsGrid items={pageData.testimonials} />
+            </Section>
+        )
+    }
+    {
+        pageData?.team && (
+            <Section title="Team">
+                <TeamGrid groups={pageData.team} />
+            </Section>
+        )
+    }
+    {
+        pageData?.contact && (
+            <Section title="Contact Details">
+                <div class="grid gap-6 md:grid-cols-[1fr_2fr]">
+                    <Card variant="cream" class="text-body max-w-none">
+                        <Heading as="h3" size="small">
+                            Get in touch
+                        </Heading>
+                        <div class="mt-4 flex flex-col gap-2">
+                            <p class="m-0">Phone: {siteInfo.phone}</p>
+                            <p class="m-0">Email: {siteInfo.email}</p>
+                            <p class="m-0 mt-2">{siteInfo.address}</p>
+                        </div>
+                    </Card>
+                    <ContactForm
+                        heading={pageData.contact.heading}
+                        description={pageData.contact.description}
+                    />
+                </div>
+            </Section>
+        )
+    }
 </BaseLayout>

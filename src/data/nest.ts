@@ -7,8 +7,19 @@ export const nestMeta = {
 export const nestHeroImage =
     'https://www.pelicanproductions.com.au/uploads/3/9/5/6/39560363/thenest-banner_orig.jpg';
 
-export const nestPrograms = [
+export type NestProgram = {
+    short: string;
+    name: string;
+    ages: string;
+    times: string[];
+    blurb: string;
+    more: string;
+    cta: string;
+};
+
+export const nestPrograms: NestProgram[] = [
     {
+        short: 'MTA',
         name: 'Music Theatre Academy',
         ages: '7–18yrs · three age groups',
         times: [
@@ -20,6 +31,7 @@ export const nestPrograms = [
         cta: 'Register for Term 3, 2026',
     },
     {
+        short: 'VOX',
         name: 'Vocal Academy',
         ages: '7yrs+ · private lessons',
         times: [
@@ -31,6 +43,7 @@ export const nestPrograms = [
         cta: 'Book a lesson',
     },
     {
+        short: 'GO',
         name: 'SMASH Dance',
         ages: '7–17yrs · recreational',
         times: [
@@ -42,6 +55,7 @@ export const nestPrograms = [
         cta: 'Register for Term 3, 2026',
     },
     {
+        short: 'ACT',
         name: 'Acting',
         ages: '7–17yrs · two groups',
         times: [

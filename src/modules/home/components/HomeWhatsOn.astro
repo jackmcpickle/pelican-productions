@@ -3,7 +3,9 @@ import NewsCard from '@/components/blocks/NewsCard.astro';
 import Button from '@/components/ui/Button.astro';
 import Heading from '@/components/ui/Heading.astro';
 import Section from '@/components/ui/Section.astro';
-import { newsItems } from '@/data/home';
+import { getFeaturedNews } from '@/lib/news';
+
+const newsItems = await getFeaturedNews();
 ---
 
 <Section id="whats-on">
@@ -20,12 +22,12 @@ import { newsItems } from '@/data/home';
             {
                 newsItems.map((item) => (
                     <NewsCard
-                        tag={item.tag}
-                        date={item.date}
-                        title={item.title}
-                        body={item.body}
-                        cta={item.cta}
-                        href={item.href}
+                        tag={item.data.tag}
+                        date={item.data.dateLabel}
+                        title={item.data.title}
+                        body={item.data.body}
+                        cta={item.data.cta}
+                        href={item.data.href}
                         headingAs="h3"
                         class="min-h-[340px]"
                     />

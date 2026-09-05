@@ -1,10 +1,5 @@
 ---
-import {
-    navigation,
-    portalUrl,
-    siteInfo,
-    type NavId,
-} from '@/data/site';
+import { navigation, portalUrl, siteInfo, type NavId } from '@/data/site';
 import Button from '@/components/ui/Button.astro';
 import { cn } from '@/lib/cn';
 
@@ -16,24 +11,26 @@ const { active = '' } = Astro.props;
 const navId = 'site-nav';
 ---
 
-<header class="relative z-50 w-full">
-    <div
-        class="flex flex-wrap items-center justify-between gap-4"
-    >
+<header
+    class="bg-paper sticky top-0 z-50 -mx-4 px-4 py-3 sm:-mx-8 sm:px-8 lg:relative lg:top-auto lg:mx-0 lg:bg-transparent lg:px-0 lg:py-0"
+>
+    <div class="relative flex items-center justify-between gap-3">
         <a
             href="/"
-            class="flex shrink-0 items-center gap-3 whitespace-nowrap"
+            class="flex min-w-0 items-center gap-2 sm:gap-3"
         >
             <img
                 src="/images/logo.jpg"
                 alt=""
-                class="h-12 w-12 rounded-[800px] object-cover"
+                class="h-10 w-10 shrink-0 rounded-[800px] object-cover sm:h-12 sm:w-12"
                 width="48"
                 height="48"
                 loading="eager"
                 decoding="async"
             />
-            <span class="font-display text-[32px] leading-none text-ink">
+            <span
+                class="font-display text-ink text-[22px] leading-none sm:text-[32px]"
+            >
                 {siteInfo.name}
             </span>
         </a>
@@ -62,42 +59,57 @@ const navId = 'site-nav';
         </nav>
 
         <div class="hidden items-center gap-3 lg:flex">
-            <Button href={portalUrl} variant="secondary" target="_blank" rel="noreferrer">
+            <Button
+                href={portalUrl}
+                variant="secondary"
+                target="_blank"
+                rel="noreferrer"
+            >
                 Student portal
             </Button>
-            <Button href={portalUrl} variant="primary" target="_blank" rel="noreferrer">
+            <Button
+                href={portalUrl}
+                variant="primary"
+                target="_blank"
+                rel="noreferrer"
+            >
                 Enrol for Term 3
             </Button>
         </div>
 
-        <details class="group relative lg:hidden">
+        <details class="group shrink-0 lg:hidden">
             <summary
-                class="focus-ring bg-cream text-ink list-none rounded-[40px] border-[1.5px] border-ink px-4 py-2 text-base font-medium [&::-webkit-details-marker]:hidden"
+                class="focus-ring bg-cream text-ink border-ink inline-flex cursor-pointer list-none items-center rounded-[40px] border-[1.5px] px-3 py-2 text-base font-medium [&::-webkit-details-marker]:hidden"
                 aria-label="Open menu"
             >
                 <span class="group-open:hidden">Menu</span>
                 <span class="hidden group-open:inline">Close</span>
             </summary>
-            <div
-                class="bg-cream absolute top-full right-0 left-0 mt-2 flex flex-col gap-2 rounded-[40px] border-[1.5px] border-ink p-4 shadow-lg"
+            <nav
+                class="bg-cream border-ink absolute inset-x-0 top-full z-50 mt-3 flex flex-col gap-1 rounded-[40px] border-[1.5px] p-4 shadow-lg"
+                aria-label="Mobile"
             >
                 {
                     navigation.map(item => (
                         <a
                             href={item.href}
                             class={cn(
-                                'rounded-[800px] px-3 py-2 text-base transition-colors',
+                                'rounded-[800px] px-4 py-3 text-base transition-colors',
                                 item.id === active
                                     ? 'bg-ink text-white hover:text-white'
                                     : 'text-ink hover:bg-paper',
                             )}
-                            aria-current={item.id === active ? 'page' : undefined}
+                            aria-current={
+                                item.id === active ? 'page' : undefined
+                            }
                         >
                             {item.label}
                         </a>
                     ))
                 }
-                <div class="mt-2 flex flex-col gap-2 border-t border-ink/20 pt-3">
+                <div
+                    class="border-ink/20 mt-2 flex flex-col gap-2 border-t pt-3"
+                >
                     <Button
                         href={portalUrl}
                         variant="secondary"
@@ -117,7 +129,7 @@ const navId = 'site-nav';
                         Enrol for Term 3
                     </Button>
                 </div>
-            </div>
+            </nav>
         </details>
     </div>
 </header>

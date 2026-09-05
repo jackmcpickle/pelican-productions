@@ -5,6 +5,7 @@ import Card from '@/components/ui/Card.astro';
 import Heading from '@/components/ui/Heading.astro';
 import Section from '@/components/ui/Section.astro';
 import { homeImages } from '@/data/home';
+import { campFact, camps } from '@/data/camps';
 import { campsBookingUrl } from '@/data/site';
 ---
 
@@ -41,24 +42,22 @@ import { campsBookingUrl } from '@/data/site';
                 cast.
             </p>
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <div class="border-white-dotted flex flex-col gap-2 border-t pt-4">
-                    <span class="font-display text-[40px] leading-none">
-                        Music Theatre Camp
-                    </span>
-                    <span class="text-sm leading-snug">
-                        4–17 Jan 2027 · 8–19yrs<br />$690 + GST ·
-                        Highgate/Fullarton
-                    </span>
-                </div>
-                <div class="border-white-dotted flex flex-col gap-2 border-t pt-4">
-                    <span class="font-display text-[40px] leading-none">
-                        Spotlight
-                    </span>
-                    <span class="text-sm leading-snug">
-                        4–9 Jan 2027 · 8–16yrs<br />$490 + GST · Lower
-                        Mitcham/Highgate
-                    </span>
-                </div>
+                {
+                    camps.map((camp) => (
+                        <div class="border-white-dotted flex flex-col gap-2 border-t pt-4">
+                            <span class="font-display text-[40px] leading-none">
+                                {camp.name}
+                            </span>
+                            <span class="text-sm leading-snug">
+                                {campFact(camp, 'Dates')} ·{' '}
+                                {campFact(camp, 'Ages')}
+                                <br />
+                                {campFact(camp, 'Cost')} ·{' '}
+                                {campFact(camp, 'Rehearsals')}
+                            </span>
+                        </div>
+                    ))
+                }
             </div>
             <p class="m-0 text-sm leading-snug">
                 Auditions 9, 10, 11, 17, 18 October (optional — you don't need

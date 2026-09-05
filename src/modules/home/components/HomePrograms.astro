@@ -3,28 +3,34 @@ import Badge from '@/components/ui/Badge.astro';
 import Button from '@/components/ui/Button.astro';
 import Card from '@/components/ui/Card.astro';
 import Heading from '@/components/ui/Heading.astro';
-import MediaFrame from '@/components/ui/MediaFrame.astro';
 import Section from '@/components/ui/Section.astro';
-import { homeImages, nestPrograms } from '@/data/home';
+import { homeImages } from '@/data/home';
+import { nestPrograms } from '@/data/nest';
 import { portalUrl } from '@/data/site';
 ---
 
 <Section id="nest">
     <div class="flex flex-col gap-8">
-        <MediaFrame
-            src={homeImages.nestBanner}
-            alt="The Nest studio"
-            class="h-[280px] sm:h-[360px]"
-        >
-            <div
-                class="absolute right-8 bottom-8 left-8 flex flex-col items-start gap-3"
-            >
+        <div class="bg-ink overflow-hidden rounded-[40px]">
+            <div class="px-6 pt-8 sm:px-10 sm:pt-10">
+                <div
+                    class="flex h-[200px] items-center justify-center overflow-hidden sm:h-[260px]"
+                >
+                    <img
+                        src={homeImages.nestBanner}
+                        alt="The Nest"
+                        class="h-full w-auto max-w-none object-cover"
+                        loading="eager"
+                    />
+                </div>
+            </div>
+            <div class="flex flex-col items-start gap-4 px-6 pt-8 pb-8 sm:px-10 sm:pt-10 sm:pb-12">
                 <Badge>Weekly classes · Term 3, 2026</Badge>
                 <Heading as="h2" size="display" class="text-white">
                     Programs at The Nest
                 </Heading>
             </div>
-        </MediaFrame>
+        </div>
 
         <p class="text-body-lg m-0 max-w-[760px]">
             Whether you're building towards a professional career or just want
@@ -47,7 +53,7 @@ import { portalUrl } from '@/data/site';
                                 {program.name}
                             </Heading>
                             <p class="m-0 text-sm leading-snug">
-                                {program.when}
+                                {program.times.join(' · ')}
                             </p>
                             <p class="text-body m-0">{program.blurb}</p>
                             <Button
