@@ -1,0 +1,35 @@
+{
+    "name": "Pelican Productions",
+    "short_name": "Pelican",
+    "description": "Classes, camps and full-scale musicals for young performers across South Australia.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#e2e2df",
+    "theme_color": "#070607",
+    "icons": [
+        {
+            "src": "/favicon.svg",
+            "type": "image/svg+xml",
+            "sizes": "any",
+            "purpose": "any"
+        },
+        {
+            "src": "/icon-192.png",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "any"
+        },
+        {
+            "src": "/icon-512.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any"
+        },
+        {
+            "src": "/icon-512-maskable.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "maskable"
+        }
+    ]
+}

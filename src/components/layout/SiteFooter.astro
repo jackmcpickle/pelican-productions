@@ -1,10 +1,6 @@
 ---
-import {
-    footerMenu,
-    quickLinks,
-    siteInfo,
-    socialLinks,
-} from '@/data/site';
+import { footerMenu, quickLinks, siteInfo, socialLinks } from '@/data/site';
+import BrandLockup from '@/components/layout/BrandLockup.astro';
 import Button from '@/components/ui/Button.astro';
 import Heading from '@/components/ui/Heading.astro';
 import Input from '@/components/ui/Input.astro';
@@ -12,7 +8,9 @@ import Input from '@/components/ui/Input.astro';
 const facebookLink = socialLinks.find(link => link.label === 'Facebook');
 ---
 
-<footer class="bg-ink text-white mt-16 mb-8 flex w-full flex-col gap-12 rounded-[40px] px-6 py-10 sm:px-10 md:mt-20">
+<footer
+    class="bg-ink mt-16 mb-8 flex w-full flex-col gap-12 rounded-[40px] px-6 py-10 text-white sm:px-10 md:mt-20"
+>
     <div class="grid items-center gap-10 md:grid-cols-2">
         <Heading
             as="h2"
@@ -43,7 +41,7 @@ const facebookLink = socialLinks.find(link => link.label === 'Facebook');
                 <Button
                     type="submit"
                     variant="primary"
-                    class="hover:bg-white shrink-0 hover:text-ink"
+                    class="hover:text-ink shrink-0 hover:bg-white"
                 >
                     Subscribe
                 </Button>
@@ -54,26 +52,21 @@ const facebookLink = socialLinks.find(link => link.label === 'Facebook');
     <div
         class="border-white-dotted flex flex-wrap items-center justify-between gap-4 border-t-[1.5px] pt-8"
     >
-        <a href="/" class="flex items-center gap-3 hover:text-white">
-            <img
-                src="/images/logo.jpg"
-                alt=""
-                class="h-10 w-10 rounded-[800px] object-cover"
-                width="40"
-                height="40"
-                loading="lazy"
-            />
-            <span class="font-display text-[26px] leading-none">
-                {siteInfo.name}
-            </span>
-        </a>
+        <BrandLockup
+            inverted
+            class="hover:text-white"
+            markClass="h-10 w-auto sm:h-10"
+        />
 
-        <nav class="flex flex-wrap gap-2" aria-label="Footer">
+        <nav
+            class="flex flex-wrap gap-2"
+            aria-label="Footer"
+        >
             {
                 footerMenu.map(item => (
                     <a
                         href={item.href}
-                        class="px-3 text-base text-white hover:text-flame"
+                        class="hover:text-flame px-3 text-base text-white"
                     >
                         {item.label}
                     </a>
@@ -83,7 +76,7 @@ const facebookLink = socialLinks.find(link => link.label === 'Facebook');
                 facebookLink && (
                     <a
                         href={facebookLink.href}
-                        class="px-3 text-base text-white hover:text-flame"
+                        class="hover:text-flame px-3 text-base text-white"
                         target="_blank"
                         rel="noreferrer"
                     >
@@ -97,7 +90,7 @@ const facebookLink = socialLinks.find(link => link.label === 'Facebook');
                     .map(item => (
                         <a
                             href={item.href}
-                            class="px-3 text-base text-white hover:text-flame"
+                            class="hover:text-flame px-3 text-base text-white"
                         >
                             {item.label}
                         </a>

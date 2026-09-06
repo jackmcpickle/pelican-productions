@@ -1,5 +1,6 @@
 ---
-import { navigation, portalUrl, siteInfo, type NavId } from '@/data/site';
+import { navigation, portalUrl, type NavId } from '@/data/site';
+import BrandLockup from '@/components/layout/BrandLockup.astro';
 import Button from '@/components/ui/Button.astro';
 import { cn } from '@/lib/cn';
 
@@ -15,25 +16,7 @@ const navId = 'site-nav';
     class="bg-paper sticky top-0 z-50 -mx-4 px-4 py-3 sm:-mx-8 sm:px-8 lg:relative lg:top-auto lg:mx-0 lg:bg-transparent lg:px-0 lg:py-0"
 >
     <div class="relative flex items-center justify-between gap-3">
-        <a
-            href="/"
-            class="flex min-w-0 items-center gap-2 sm:gap-3"
-        >
-            <img
-                src="/images/logo.jpg"
-                alt=""
-                class="h-10 w-10 shrink-0 rounded-[800px] object-cover sm:h-12 sm:w-12"
-                width="48"
-                height="48"
-                loading="eager"
-                decoding="async"
-            />
-            <span
-                class="font-display text-ink text-[22px] leading-none sm:text-[32px]"
-            >
-                {siteInfo.name}
-            </span>
-        </a>
+        <BrandLockup />
 
         <nav
             id={navId}
