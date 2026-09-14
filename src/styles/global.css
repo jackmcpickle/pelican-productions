@@ -1,7 +1,7 @@
 /*
  * DESIGN BRIEF — Pelican Productions
  * Youth theatre brand on warm paper (#e2e2df). Display type: Bebas Neue.
- * Body: DM Sans 500. Accent palette: flame orange (#fc5000), sun yellow (#f5f28e),
+ * Body: DM Sans 500. Accent palette: teal (#55bfb3), sun yellow (#f5f28e),
  * violet (#524ae9) on cream cards (#f7f6f2) and ink (#070607). Large rounded cards
  * (40px), pill chips and CTAs, dotted dividers, halftone overlays on violet panels.
  */
@@ -17,7 +17,7 @@
     --color-paper: #e2e2df;
     --color-ink: #070607;
     --color-cream: #f7f6f2;
-    --color-flame: #fc5000;
+    --color-teal: #55bfb3;
     --color-sun: #f5f28e;
     --color-violet: #524ae9;
     --color-white: #ffffff;
@@ -67,7 +67,7 @@
     }
 
     a:not([data-button]):hover {
-        @apply text-flame;
+        @apply text-teal;
     }
 
     a[data-quiet] {
@@ -113,11 +113,11 @@
     }
 
     .focus-ring {
-        @apply outline-none focus-visible:ring-2 focus-visible:ring-flame focus-visible:ring-offset-2 focus-visible:ring-offset-paper;
+        @apply outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 focus-visible:ring-offset-paper;
     }
 
     .focus-ring-dark {
-        @apply outline-none focus-visible:ring-2 focus-visible:ring-flame focus-visible:ring-offset-2 focus-visible:ring-offset-ink;
+        @apply outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink;
     }
 
     .animate-marquee {

@@ -2,7 +2,7 @@
 import { cn } from '@/lib/cn';
 
 interface Props {
-    variant?: 'cream' | 'ink' | 'flame' | 'violet' | 'sun';
+    variant?: 'cream' | 'ink' | 'teal' | 'violet' | 'sun';
     padding?: boolean;
     class?: string;
 }
@@ -12,7 +12,7 @@ const { variant = 'cream', padding = true, class: className } = Astro.props;
 const variants = {
     cream: 'bg-cream text-ink',
     ink: 'bg-ink text-white',
-    flame: 'bg-flame text-white',
+    teal: 'bg-teal text-ink',
     violet: 'bg-violet text-white',
     sun: 'bg-sun text-ink',
 };

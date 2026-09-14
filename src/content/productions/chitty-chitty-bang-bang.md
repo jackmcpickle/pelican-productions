@@ -2,7 +2,7 @@
 name: Chitty Chitty Bang Bang
 year: 2015
 note: Australian non-professional premiere
-variant: flame
+variant: teal
 featured: true
 order: 15
 description: Pelican Productions staged the Australian non-professional premiere of Chitty Chitty Bang Bang in 2015.
