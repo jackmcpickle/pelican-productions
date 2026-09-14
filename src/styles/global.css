@@ -1,7 +1,7 @@
 /*
  * DESIGN BRIEF — Pelican Productions
  * Youth theatre brand on warm paper (#e2e2df). Display type: Bebas Neue.
- * Body: DM Sans 500. Accent palette: teal (#55bfb3), sun yellow (#f5f28e),
+ * Body: DM Sans 500. Accent palette: teal (#188787), sun yellow (#f5f28e),
  * violet (#524ae9) on cream cards (#f7f6f2) and ink (#070607). Large rounded cards
  * (40px), pill chips and CTAs, dotted dividers, halftone overlays on violet panels.
  */
@@ -17,7 +17,7 @@
     --color-paper: #e2e2df;
     --color-ink: #070607;
     --color-cream: #f7f6f2;
-    --color-teal: #55bfb3;
+    --color-teal: #188787;
     --color-sun: #f5f28e;
     --color-violet: #524ae9;
     --color-white: #ffffff;
