@@ -10,7 +10,7 @@ export type CampFact = {
 
 export type Camp = {
     id: 'mtc' | 'spotlight';
-    variant: 'ink' | 'flame';
+    variant: 'ink' | 'teal';
     buttonVariant: 'primary' | 'inverse';
     length: string;
     name: string;
@@ -49,7 +49,7 @@ export const camps: Camp[] = [
     },
     {
         id: 'spotlight',
-        variant: 'flame',
+        variant: 'teal',
         buttonVariant: 'inverse',
         length: 'One-week intensive',
         name: 'Spotlight',

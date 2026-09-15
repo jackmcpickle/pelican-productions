@@ -18,16 +18,16 @@ export const homeImages = {
 };
 
 export const stats = [
-    { label: 'Making theatre since', value: '2004', variant: 'flame' as const },
+    { label: 'Making theatre since', value: '2004', variant: 'teal' as const },
     {
         label: 'Full-scale musicals staged',
         value: '20+',
-        variant: 'flame' as const,
+        variant: 'teal' as const,
     },
     {
         label: 'Performer age range',
         value: '7–19',
-        variant: 'flame' as const,
+        variant: 'teal' as const,
     },
     {
         label: 'Alumni on stage in',

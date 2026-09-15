@@ -96,7 +96,7 @@ const productions = defineCollection({
         name: z.string(),
         year: z.number(),
         note: z.string().optional(),
-        variant: z.enum(['flame', 'cream', 'violet']).optional(),
+        variant: z.enum(['teal', 'cream', 'violet']).optional(),
         featured: z.boolean().optional(),
         coverImage: z.string().optional(),
         description: z.string().optional(),
