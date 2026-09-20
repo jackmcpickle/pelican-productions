@@ -9,7 +9,8 @@ export const siteInfo = {
     url: 'https://pelicanproductions.com.au',
 };
 
-export type NavId = 'whats-on' | 'nest' | 'camps' | 'musicals' | 'about';
+export type NavId =
+    'whats-on' | 'nest' | 'camps' | 'musicals' | 'about' | 'contact';
 
 export const navigation: { id: NavId; label: string; href: string }[] = [
     { id: 'whats-on', label: "What's on", href: '/whats-on' },
@@ -17,6 +18,7 @@ export const navigation: { id: NavId; label: string; href: string }[] = [
     { id: 'camps', label: 'Summer camps', href: '/summer-camps' },
     { id: 'musicals', label: 'Musicals', href: '/musicals' },
     { id: 'about', label: 'About', href: '/about' },
+    { id: 'contact', label: 'Contact', href: '/contact' },
 ];
 
 export const portalUrl =
@@ -33,6 +35,7 @@ export const footerMenu = [
     { label: 'Summer camps', href: '/summer-camps' },
     { label: 'Musicals', href: '/musicals' },
     { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' },
 ];
 
 export const quickLinks = [
@@ -50,4 +53,3 @@ export const socialLinks = [
         href: facebookUrl,
     },
 ];
-

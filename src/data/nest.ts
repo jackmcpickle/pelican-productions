@@ -26,7 +26,7 @@ export const nestPrograms: NestProgram[] = [
             'Fridays 4.30–8.00pm (8–18yrs, incl. 30min dinner break)',
             'Saturdays 9.30am–12.30pm (7–18yrs)',
         ],
-        blurb: 'Build your skills as a triple threat in dance, voice and acting for musical theatre. Students rotate through an hour each of vocal, acting and dance every week — three classes on one night, in one location.',
+        blurb: 'Build your skills as a triple threat in dance, voice and acting for musical theatre. Students rotate through an hour each of vocal, acting and dance every week — three classes in one three-hour session, all in one location.',
         more: 'Resident tutors bring a wealth of teaching and performance experience, with special guests covering vocal technique, cabaret and audition technique. Excursions to music theatre productions plus a mid-year and end-of-year showcase.',
         cta: 'Register for Term 3, 2026',
     },

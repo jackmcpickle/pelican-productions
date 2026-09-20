@@ -5,10 +5,6 @@ export interface WhatsOnDateItem {
 
 export const whatsOnDates: WhatsOnDateItem[] = [
     {
-        when: '30 Aug',
-        what: 'Cert IV Musical Theatre audition submissions close',
-    },
-    {
         when: '17 Sept',
         what: 'Europe Tour 2028 info session, 6pm at The Nest',
     },
