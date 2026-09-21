@@ -4,6 +4,10 @@ import { ContactPage } from '@/modules/contact';
 import { contactMeta } from '@/data/contact';
 ---
 
-<BaseLayout title={contactMeta.title} description={contactMeta.description}>
+<BaseLayout
+    title={contactMeta.title}
+    description={contactMeta.description}
+    active="contact"
+>
     <ContactPage />
 </BaseLayout>
