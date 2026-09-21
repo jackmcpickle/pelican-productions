@@ -37,4 +37,4 @@ export const stats = [
 ];
 
 export const sportsVoucherFormUrl =
-    'https://www.sportsvouchers.sa.gov.au/2025-Sports-Voucher-Registration-Form.pdf';
+    'https://www.sportsvouchers.sa.gov.au/2026-Sports-Voucher-Plus-Voucher-Form.pdf';

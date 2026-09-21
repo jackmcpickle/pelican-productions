@@ -18,9 +18,10 @@ const STORIES = [
     'Open The Nest — hero "The Nest" + program cards + Register',
     'Open Summer camps — "Summer. Sorted." + Book + two camp cards',
     'Open Musicals — "The shows" + production cards + alumni chips',
-    'Open About — "Theatre should be fun" + values + directors',
+    'Open About — "Where a love of performing becomes a community" + values + directors',
+    'Cert IV: stale audition deadline removed + 5 December showcase added',
     'Footer: Become a VIP Pelican email field + Subscribe, Privacy link',
-    'Mobile viewport: Menu opens and links work',
+    'Contact is available in desktop and mobile navigation',
 ];
 
 test.describe.configure({ mode: 'serial' });
@@ -35,7 +36,10 @@ test('redesign presentation', async ({ browser }) => {
         // Home
         await page.goto('/');
         await expect(
-            page.getByRole('heading', { level: 1, name: /sing\. dance\. act/i }),
+            page.getByRole('heading', {
+                level: 1,
+                name: /sing\. dance\. act/i,
+            }),
         ).toBeVisible();
         await expect(
             page.getByRole('navigation', { name: 'Main' }),
@@ -46,6 +50,13 @@ test('redesign presentation', async ({ browser }) => {
         await expect(
             page.getByRole('link', { name: 'Summer camp 2027' }),
         ).toBeVisible();
+        await expect(page.getByText('Grease').first()).toBeVisible();
+        await expect(
+            page.getByText("Disney's The Little Mermaid JR").first(),
+        ).toBeVisible();
+        await expect(
+            page.getByText(/auditions extended to 30 august/i),
+        ).toHaveCount(0);
         await captureStep(page, artifacts, '01-home', 'Home hero');
 
         // Nav to What's on
@@ -122,7 +133,7 @@ test('redesign presentation', async ({ browser }) => {
             .click();
         await expect(page).toHaveURL(/about/);
         await expect(
-            page.getByRole('heading', { name: /theatre should be fun/i }),
+            page.getByRole('heading', { name: /love of performing/i }),
         ).toBeVisible();
         await expect(page.getByText(/fun first/i)).toBeVisible();
         await expect(
@@ -138,10 +149,28 @@ test('redesign presentation', async ({ browser }) => {
         await expect(
             page.getByRole('button', { name: /subscribe/i }),
         ).toBeVisible();
-        await expect(
-            page.getByRole('link', { name: 'Privacy' }),
-        ).toBeVisible();
+        await expect(page.getByRole('link', { name: 'Privacy' })).toBeVisible();
         await captureStep(page, artifacts, '07-footer', 'Footer');
+
+        // Cert IV
+        await page.goto('/cert4');
+        await expect(
+            page.getByRole('heading', { name: /cert iv musical theatre/i }),
+        ).toBeVisible();
+        await expect(page.getByText('5 December 2026')).toBeVisible();
+        await expect(page.getByText(/auditions extended/i)).toHaveCount(0);
+        await captureStep(page, artifacts, '08-cert4', 'Cert IV');
+
+        // Contact in desktop navigation
+        await page
+            .getByRole('navigation', { name: 'Main' })
+            .getByRole('link', { name: 'Contact' })
+            .click();
+        await expect(page).toHaveURL(/contact/);
+        await expect(
+            page.getByRole('heading', { level: 1, name: 'Contact' }),
+        ).toBeVisible();
+        await captureStep(page, artifacts, '09-contact', 'Contact');
 
         // Mobile menu
         await page.setViewportSize({ width: 390, height: 844 });
@@ -152,7 +181,12 @@ test('redesign presentation', async ({ browser }) => {
         ).toBeVisible();
         await page.getByRole('link', { name: "What's on" }).first().click();
         await expect(page).toHaveURL(/whats-on/);
-        await captureStep(page, artifacts, '08-mobile-menu', 'Mobile menu');
+        await page.goto('/');
+        await page.getByLabel('Open menu').click();
+        await expect(
+            page.getByRole('link', { name: 'Contact' }).first(),
+        ).toBeVisible();
+        await captureStep(page, artifacts, '10-mobile-menu', 'Mobile menu');
 
         passed = true;
     } catch (error) {

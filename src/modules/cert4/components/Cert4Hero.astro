@@ -1,24 +1,23 @@
 ---
-import Badge from '@/components/ui/Badge.astro';
 import Button from '@/components/ui/Button.astro';
 import Heading from '@/components/ui/Heading.astro';
 import Section from '@/components/ui/Section.astro';
-import {
-    cert4AuditionUrl,
-    cert4ProspectusUrl,
-} from '@/data/cert4';
+import { cert4AuditionUrl, cert4ProspectusUrl } from '@/data/cert4';
 ---
 
 <Section class="mt-12 md:mt-16">
     <div class="grid items-start gap-10 md:grid-cols-2 md:gap-16">
         <div class="flex flex-col gap-6">
-            <Badge>Auditions extended to 30 August</Badge>
-            <Heading as="h1" size="hero" class="md:text-[80px]">
+            <Heading
+                as="h1"
+                size="hero"
+                class="md:text-[80px]"
+            >
                 Cert IV Musical Theatre
             </Heading>
             <p class="text-body m-0">CUA40520 · with Empowerdance RTO 40397</p>
         </div>
-        <div class="flex flex-col gap-6 text-body">
+        <div class="text-body flex flex-col gap-6">
             <p class="m-0">
                 For the first time in South Australia, aspiring musical theatre
                 performers can enrol in the CUA40520 Certificate IV in Musical

@@ -1,7 +1,7 @@
 export const cert4Meta = {
     title: 'Cert IV Musical Theatre',
     description:
-        'CUA40520 Certificate IV in Musical Theatre at The Nest. 37 weeks, Mondays 9am–4pm, Years 10–13. Auditions for the 2027 intake close 30 August 2026.',
+        'CUA40520 Certificate IV in Musical Theatre at The Nest. 37 weeks, Mondays 9am–4pm, for students in Years 10–13.',
 };
 
 export const cert4ProspectusUrl =
@@ -10,7 +10,8 @@ export const cert4ProspectusUrl =
 export const cert4AuditionUrl =
     'https://docs.google.com/forms/d/e/1FAIpQLSftdAtOMtMvsUuC_F7o2-mYhiTKfQcz_1PGO3I8FIChmMiVLw/viewform?usp=header';
 
-export const cert4ChoreographyUrl = 'https://www.youtube.com/watch?v=ubKmleI5YEQ';
+export const cert4ChoreographyUrl =
+    'https://www.youtube.com/watch?v=ubKmleI5YEQ';
 
 export const diplomaInterestUrl = 'https://forms.gle/v1y9QRgQ3wHDVTz99';
 
@@ -87,6 +88,6 @@ export const cert4AuditionPieces: {
 
 export const cert4Dates = [
     { when: '15 June 2026', what: 'Audition submissions open' },
-    { when: '30 August 2026', what: 'Audition deadline' },
     { when: '21 September 2026', what: 'Final offers sent' },
+    { when: '5 December 2026', what: 'Pelican Academy End of Year Showcase' },
 ];
