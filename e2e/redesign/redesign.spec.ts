@@ -13,7 +13,7 @@ const PERSONA = {
     role: 'public visitor',
 };
 const STORIES = [
-    'Land on home — see "Sing. Dance. Act." hero, pill nav, Find your class + Summer camp CTAs',
+    'Land on home — see "Perform. Create. Belong." hero, pill nav, Find your class + Summer camp CTAs',
     "Open What's on — announcements + key dates",
     'Open The Nest — hero "The Nest" + program cards + Register',
     'Open Summer camps — "Summer. Sorted." + Book + two camp cards',
@@ -38,7 +38,7 @@ test('redesign presentation', async ({ browser }) => {
         await expect(
             page.getByRole('heading', {
                 level: 1,
-                name: /sing\. dance\. act/i,
+                name: /perform\. create\. belong/i,
             }),
         ).toBeVisible();
         await expect(

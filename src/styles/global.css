@@ -1,9 +1,10 @@
 /*
  * DESIGN BRIEF — Pelican Productions
  * Youth theatre brand on warm paper (#e2e2df). Display type: Bebas Neue.
- * Body: DM Sans 500. Accent palette: teal (#188787), sun yellow (#f5f28e),
- * violet (#524ae9) on cream cards (#f7f6f2) and ink (#070607). Large rounded cards
- * (40px), pill chips and CTAs, dotted dividers, halftone overlays on violet panels.
+ * Body: DM Sans 500. Brand palette: watermelon (#FF2E63), cobalt (#0060FF),
+ * teal (#43A998), mint (#A7DCC7) on cream cards (#f7f6f2) and ink (#070607).
+ * Cobalt is the text and button colour. Large rounded cards (40px), pill chips
+ * and CTAs, dotted dividers, halftone overlays on cobalt panels.
  */
 
 @import 'tailwindcss';
@@ -17,9 +18,12 @@
     --color-paper: #e2e2df;
     --color-ink: #070607;
     --color-cream: #f7f6f2;
-    --color-teal: #188787;
-    --color-sun: #f5f28e;
-    --color-violet: #524ae9;
+    --color-watermelon: #ff2e63;
+    --color-cobalt: #0060ff;
+    --color-teal: #43a998;
+    --color-mint: #a7dcc7;
+    --color-sun: #a7dcc7;
+    --color-violet: #0060ff;
     --color-white: #ffffff;
 
     --radius-card: 40px;
@@ -67,7 +71,7 @@
     }
 
     a:not([data-button]):hover {
-        @apply text-teal;
+        @apply text-cobalt;
     }
 
     a[data-quiet] {
@@ -113,11 +117,11 @@
     }
 
     .focus-ring {
-        @apply outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 focus-visible:ring-offset-paper;
+        @apply outline-none focus-visible:ring-2 focus-visible:ring-cobalt focus-visible:ring-offset-2 focus-visible:ring-offset-paper;
     }
 
     .focus-ring-dark {
-        @apply outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink;
+        @apply outline-none focus-visible:ring-2 focus-visible:ring-cobalt focus-visible:ring-offset-2 focus-visible:ring-offset-ink;
     }
 
     .animate-marquee {
